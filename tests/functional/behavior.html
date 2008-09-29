@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>CD3.Behaviors functional test</title>
+		<script type="text/javascript" src="../../lib/prototype.js"></script>
+		<script type="text/javascript" src="../../src/behaviors.js"></script>
+		<style type="text/css" media="screen">
+			.conatiner {
+				border: 1px solid black;
+				padding: 5px;
+			}
+			.clicked {
+				font-weight: bold;
+				color: red;
+			}
+		</style>
+		<script type="text/javascript">
+			// selector test
+			CD3.Behaviors({
+				'#container1': function(){
+					this.insert({top: new Element('h1').update('Generating Header')});
+				},
+				'#container1 a': function(a){
+					a.observe('click', function(){ alert('#container1 a clicked'); })
+				},
+				'#container1 span': function(){
+					alert('This will not excecute');
+				}
+			});
+			// event-selector test
+			CD3.Behaviors({
+				'#container2 a:click': function(){
+					this.toggleClassName('clicked')
+				},
+				'#container2 a.last': {
+					mouseover: function(){
+						this.innerHTML = 'mouseover';
+					},
+					mouseout: function(){
+						this.innerHTML = 'link 2';
+					}
+				}
+			});
+			// event-delegation 
+			CD3.Behaviors({
+				'#container3:click': {
+					'span': function(){
+						alert('span was clicked, span innerHTML is "' + this.innerHTML + '"');
+					},
+					'a': function(){
+						alert('link was clicked, span innerHTML is "' + this.innerHTML + '"');
+					},
+					'div': function(){
+						alert('nothing was clicked');
+					}
+				},
+				'#container3': {
+					mouseover: {
+						'span': function(){
+							this.addClassName('clicked');
+						},
+						'a': function(){
+							this.addClassName('clicked');
+						}
+					},
+					mouseout: {
+						'span': function(){
+							this.removeClassName('clicked');
+						},
+						'a': function(){
+							this.removeClassName('clicked');
+						}
+					}
+				}
+			});
+			
+			// class initialization
+			var TestWidget = Class.create({
+				initialize: function(element, options){
+					this.value = options || 0
+					element.observe('click', this.click.bind(this));
+				},
+				click: function(){
+					alert('widget with ' + this.value + ' was clicked');
+				}
+			});
+			CD3.Behaviors({
+				'#container4 a.first': TestWidget,
+				'#container4 a.second': [TestWidget, 5]
+			});
+		</script>
+	</head>
+	<body>
+		<div id="container1" class="conatiner">
+			this is text in #container1, now we must have a header
+			<br />
+			<a href="#">click me</a>
+		</div>
+		<div id="container2" class="conatiner">
+			<a href="#">link 1</a>
+			<a href="#" class="last">link 2</a>
+		</div>
+		<div id="container3" class="conatiner">
+			<a href="#">link</a>
+			<span>span content</span>
+		</div>
+		<div id="container4" class="conatiner">
+			<a href="#" class="first">link with no value</a>
+			<a href="#" class="second">link with value 5</a>
+		</div>
+	</body>
+</html>
