@@ -1,9 +1,9 @@
-// ControlDepo Widget Commonent
-// @date 21.09.2008
+// ControlDepo 3 Widget Component
+// @date 07.10.2008
 // @version 1.1
 // based on 
 //		Justin Palmer's EventSelectors (http://encytemedia.com/event-selectors)
-// 		Dan Webb's LowPro http://svn.danwebb.net/external/lowpro
+// 		Dan Webb's LowPro (http://svn.danwebb.net/external/lowpro)
 if (!CD3) var CD3 = {};
 
 CD3.Behaviors = function(rules){
