@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>CD3.Behaviors functional test</title>
+		<script type="text/javascript" src="../../lib/prototype.js"></script>
+		<script type="text/javascript" src="../../lib/effects.js"></script>
+		<script type="text/javascript" src="../../src/effects.js"></script>
+		<style type="text/css" media="screen">
+			#normal {
+				width: 100px;
+				border: 2px solid black;
+				color: red;
+				font-size: 25pt;
+			}
+			#mutant {
+				width: 200px;
+				border: 0px;
+				font-weight: bold;
+				font-size: 10pt;
+				background-color: #A2A2A2;
+			}
+			.fantom {
+				clear: both;
+				border-top: 1px dotted black;
+				height: 1px;
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+		</style>
+		<script type="text/javascript">
+			function run(){
+				$('normal').mutateTo('mutant');
+			}
+			
+			function reverse(){
+				$('mutant').mutateTo('normal');
+			}
+			
+			function image(num){
+				$$('img').first().mutateTo('<img src="../assets/effect_mutate_' + num + '.jpg" alt="" />', {
+					replace: true
+				});
+			}
+		</script> 
+	</head>
+	<body>
+		text above normal element
+		<div id="normal">this is just a normal box</div>
+		tex below our element
+		<input type="button" value="run effect" onclick="run();" /> | <input type="button" value="reverse effect" onclick="reverse();"  />
+		<div id="mutant" style="display: none;">
+			Super mutant turtale div with a lot of text
+			<br /><br />
+			a lot of other text text text text
+		</div>
+		<div class="fantom"></div>
+		<input type="button" value="image 1" onclick="image(1);" /> | 
+		<input type="button" value="image 2" onclick="image(2);" /> <br />
+		<img src="../assets/effect_mutate_1.jpg" alt="" />
+		
+		<img src="../assets/effect_mutate_2.jpg" alt="this image is here only to be loaded" style="display: none;" />
+	</body>
+</html>
