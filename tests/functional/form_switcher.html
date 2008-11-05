@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>FontSwither : functional test</title>
+		<script type="text/javascript" src="../../lib/prototype.js"></script>
+		<script type="text/javascript" src="../../src/font_switcher.js"></script>
+		<style type="text/css" media="screen">	
+			.container {
+				font-size: 11px;
+			}			
+			.the-text-size-1, .text-size-1 {
+				font-size: 13px;
+			}
+			.the-text-size-2, .text-size-2 {
+				font-size: 15px;
+			}
+			.the-text-size-3, .text-size-3 {
+				font-size: 17px;
+			}
+			.the-text-size-4, .text-size-4 {
+				font-size: 19px;
+			}
+			.the-text-size-5 {
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset>
+			<legend>With default options</legend>
+			<div id='buttons_1'>
+				<a href="javascript:;" class="reset">reset</a> /
+				<a href="javascript:;" class="plus">+</a> /
+				<a href="javascript:;" class="minus">-</a> 
+			</div>
+			<div id="container_1" class="container">
+				<strong>String</strong>
+				<div>Div</div>
+				<font size="5">font</font>
+			</div>
+		</fieldset>
+		
+		<fieldset>
+			<legend>With cursom options</legend>
+			<div id='buttons_2'>
+				<input type="button" class="reset" value="reset" />
+				<input type="button" class="big" value="+" />
+				<input type="button" class="small" value="-" />
+			</div>
+			<div id="container_2" class="container">
+				<strong>String</strong>
+				<div>Div</div>
+				<font size="5">font</font>
+			</div>
+		</fieldset>
+		
+		<script type="text/javascript">
+			new CD3.FontSwitcher('buttons_1', 'container_1');
+			new CD3.FontSwitcher('buttons_2', 'container_2', {
+				classname:	'the-text-size-',
+				max: 		5,
+				reset:		'.reset',
+				plus:		'.big',
+				minus:		'.small'
+			});
+		</script>
+	</body>
+</html>
