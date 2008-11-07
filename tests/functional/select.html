@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Select : functional test</title>
+		<script type="text/javascript" src="../../lib/prototype.js"></script>
+		<script type="text/javascript" src="../../lib/effects.js"></script>
+		<script type="text/javascript" src="../../src/select.js"></script>
+		<style type="text/css" media="screen">
+		.dropper {
+			font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			float: left;
+			padding-left: 15px;
+		}
+		
+		.dropper a:hover {
+			color: #836242;
+		}
+		
+
+		.drop {
+			position: relative;
+			display: block;
+			width: 100px;
+			padding: 2px;
+			color: #7F7F7F;
+			border: 1px solid #7F7F7F;
+			text-decoration: none;
+			overflow: hidden;
+			text-align: center;
+		}
+	
+		.drop span {
+			display: block;
+			overflow: hidden;
+			cursor: pointer;
+		}
+	
+	
+		.dropper div {
+			position: absolute;
+			width: 106px;
+		}
+		
+		.dropper ul {
+			padding: 0;
+			margin: 0;
+			border: 1px solid #e6dfd8;
+			border-top: 0px;
+			background-color: #fff;
+			list-style-type: none;
+			text-align: center;
+		}
+		
+		.dropper ul li a {
+			line-height: 22px;
+			color: #429158;
+			text-decoration: none;
+		}
+	
+		#value {
+			float: left;
+			padding-left: 10px;
+		}
+
+		</style>
+	</head>
+	<body>
+		<span class="dropper" id="dropdown">
+			<a href="javascript:;" class="drop"><span>drop down</span></a>
+			<div style="overflow: visible; display: none;">
+				<ul>
+					<li><a href="#">link: 1</a></li>
+					<li><a href="#">link: 2</a></li>
+					<li><a href="#">link: 3</a></li>
+					<li><a href="#">link: 4</a></li>
+					<li><a href="#">link: 5</a></li>
+					<li><a href="#">link: 6</a></li>
+				</ul>
+			</div>
+		</span>
+		
+		<select>
+			<option value="1">value: 1</option>
+			<option value="2">value: 2</option>
+			<option value="3">value: 3</option>
+			<option value="4">value: 4</option>
+			<option value="5">value: 5</option>
+			<option value="6">value: 6</option>
+		</select>
+		<div id="value"></div>
+		
+		<script type="text/javascript">
+			new CD3.DropDown('dropdown');
+			
+			$('dropdown').down('ul').observe('click', function(e){
+				var link = e.findElement('a');
+				if (link) alert('Goto: ' + link.innerHTML);
+			});
+		
+			$$('select').each(function(select){
+				new CD3.Select(select, {onChange: function(value) { $('value').innerHTML = 'Selected value: ' + value; }});
+			});
+		</script>
+	</body>
+</html>
