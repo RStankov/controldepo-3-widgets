@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Accordion : functional test</title>
+		<script type="text/javascript" src="../../lib/prototype.js"></script>
+		<script type="text/javascript" src="../../lib/effects.js"></script>
+		<script type="text/javascript" src="../../src/accordion.js"></script>
+		<style type="text/css" media="screen">
+			#menu {
+				list-style-type:none;
+				margin:0pt;
+				padding:20pt;
+				width: 200px;
+				font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+				font-size: 12px;
+			}
+	
+			#menu .section_link {
+				color: #A3AFBC;
+				text-decoration: none;
+				display: block;
+				padding: 10px 0 10px 10px;
+				border-bottom: 1px solid #A3AFBC;
+			}
+			
+			#menu .selected {
+				font-weight: bold;
+			}
+			
+			#menu ul {
+				display:block;
+				list-style-type: none;
+				padding-left: 10px;
+				margin: 0px;
+			}
+			
+			#menu ul a {
+				color: #FFFFFF;
+				display: block;
+				font-size: 11px;
+				font-weight: bold;
+				padding: 4px 4px;
+				text-decoration: none;
+			}
+			
+			.blue {
+				background-color: #E1E6EA;
+			}
+			
+			.green {
+				background-color: #D2E1B3
+			}
+			
+			.red {
+				background-color: #F254B2;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="menu">
+			<li>
+				<a class="section_link" href="#">Section 1</a>
+				<div style="display: none;">
+					<ul class="blue">
+						<li><a href="#">Section 1 Link 1</a></li>
+						<li><a href="#">Section 1 Link 2</a></li>
+						<li><a href="#">Section 1 Link 3</a></li>
+						<li><a href="#">Section 1 Link 4</a></li>
+						<li><a href="#">Section 1 Link 5</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<a class="section_link" href="#">Section 2</a>
+				<div style="display: none;">
+					<ul class="red">
+						<li><a href="#">Section 2 Link 1</a></li>
+						<li><a href="#">Section 2 Link 2</a></li>
+						<li><a href="#">Section 2 Link 3</a></li>
+						<li><a href="#">Section 2 Link 4</a></li>
+						<li><a href="#">Section 2 Link 5</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<a class="section_link" href="#">Section 3</a>
+				<div style="display: none;">
+					<ul class="green">
+						<li><a href="#">Section 3 Link 1</a></li>
+						<li><a href="#">Section 3 Link 2</a></li>
+						<li><a href="#">Section 3 Link 3</a></li>
+						<li><a href="#">Section 3 Link 4</a></li>
+						<li><a href="#">Section 3 Link 5</a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+		<script type="text/javascript">
+			new CD3.Accordion('menu', {
+				triggers:	'a.section_link',
+				content:	'div',
+				duration:	0.6
+			});
+		</script>
+	</body>
+</html>
