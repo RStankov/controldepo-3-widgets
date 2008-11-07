@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Scroller : functional test</title>
+		<script type="text/javascript" src="../../lib/prototype.js"></script>
+		<script type="text/javascript" src="../../lib/effects.js"></script>
+		<script type="text/javascript" src="../../lib/dragdrop.js"></script>
+		<script type="text/javascript" src="../../src/scroller.js"></script>
+		<style type="text/css" media="screen">
+			#content {
+				overflow: hidden;
+				height: 340px;
+				width: 400px;
+				float: left;
+				border: 1px solid #000;
+			}
+			#scrolling {
+				float: left;
+				margin-left: 10px;
+				width: 10px;
+			}
+			.scroller {
+				height: 305px;
+				position: relative;
+				width: 6px;
+				border: 1px solid #000;
+			}
+			.scroller div {
+				background-color: #000;
+				cursor: pointer;
+				min-height: 70px;
+				position: absolute;
+				width: 6px;
+			}
+			.arrow {
+				height: 20px;
+				width: 6px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body style="padding: 20px;">
+		<input type="button" value="+ 30 lines" />
+		
+		<div id="content"></div>
+				
+		<div id="scrolling">
+			<div class="uparrow arrow">+</div>
+			<div class="scroller">
+				<div class="scroll"></div>
+			</div>
+			<div class="downarrow arrow">-</div>
+		</div>
+			
+		<script type="text/javascript">
+			function add_content(){
+				var content = $('content'),
+					lines	= content.innerHTML.split("\n").length;
+				
+				(30).times(function(i){
+					content.innerHTML += (i + lines) + "<br />\n";
+				});	
+			}
+			
+			(2).times(add_content);
+			
+			$$('input[type=button]').first().observe('click', add_content);
+			
+			new CD3.Scroller('content', 'scrolling', {
+				styleArrow:		'arrow',
+				styleMoveUp:	'uparrow',
+				styleMoveDown:	'downarrow',
+				styleSlider:	'scroll'
+			});
+		</script>
+	</body>
+</html>
