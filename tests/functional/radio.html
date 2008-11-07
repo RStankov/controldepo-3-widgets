@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Checkbox : functional test</title>
+		<script type="text/javascript" src="../../lib/prototype.js"></script>
+		<script type="text/javascript" src="../../src/radio.js"></script>
+		<style type="text/css" media="screen">
+			.radio {
+				display: block;
+				float: left;
+				width: 12px;
+				height: 12px;
+				margin: 4px;
+				border: 1px solid black;
+			}
+			.selected {
+				border: 1px solid red;
+			}
+			br {
+				clear: both;
+			}
+		</style>
+	</head>
+	<body style="padding: 20px;">
+		red is checked, black is unchecked
+		<fieldset>
+			<legend>Group 1</legend>
+			<input type="radio" name="group1" value="value 1" /> Value 1<br />
+			<input type="radio" name="group1" value="value 2" /> Value 2<br />
+			<input type="radio" name="group1" value="value 3" /> Value 3<br />
+			<input type="radio" name="group1" value="value 4" /> Value 4<br />
+			<input type="radio" name="group1" value="value 5" /> Value 5<br />
+			<input type="button" value="get value" />
+		</fieldset>
+		
+		<fieldset>
+			<legend>Group 2</legend>
+			<input type="radio" name="group2" value="value 1" /> Value 1<br />
+			<input type="radio" name="group2" value="value 2" /> Value 2<br />
+			<input type="radio" name="group2" value="value 3" /> Value 3<br />
+			<input type="radio" name="group2" value="value 4" /> Value 4<br />
+			<input type="radio" name="group2" value="value 5" /> Value 5<br />
+			<input type="button" value="get value" />
+		</fieldset>
+		<script type="text/javascript">
+			$$('input[type=radio]').each(function(input){
+				new CD3.Radio(input);
+			});
+			
+			$$('input[type=button]').invoke('observe', 'click', function(e){
+				var checked = e.element().up('fieldset').select('input[type=radio]').find(function(radio){
+					return radio.checked;
+				});
+				
+				alert(checked ? checked.getValue() : '[ No radio selected ]');
+				
+			});
+		</script>
+	</body>
+</html>

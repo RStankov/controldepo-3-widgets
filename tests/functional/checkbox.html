@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Checkbox : functional test</title>
+		<script type="text/javascript" src="../../lib/prototype.js"></script>
+		<script type="text/javascript" src="../../src/checkbox.js"></script>
+		<style type="text/css" media="screen">
+			.checkbox {
+				display: block;
+				float: left;
+				width: 12px;
+				height: 12px;
+				margin: 4px;
+				border: 1px solid black;
+			}
+			.selected {
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="checkbox" id="checker" value="the value" /> Is this working conrectly (red is checked) ?
+		<input type="button" value="check if check box is checked" id="btn" />
+		<script type="text/javascript">
+			new CD3.Checkbox('checker');
+			
+			$('btn').observe('click', function(){
+				alert($('checker').checked ? 'Yes' : 'No');
+			});
+		</script>
+	</body>
+</html>
