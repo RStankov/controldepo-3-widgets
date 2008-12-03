@@ -1,6 +1,4 @@
 // ControlDepo 3 Widget Component
-// @date 03.12.2008
-// @version 1.2
 // based on 
 //		Justin Palmer's EventSelectors (http://encytemedia.com/event-selectors)
 // 		Dan Webb's LowPro (http://svn.danwebb.net/external/lowpro)

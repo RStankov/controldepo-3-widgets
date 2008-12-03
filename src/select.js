@@ -1,4 +1,3 @@
-// ControlDepo Widget Commonent
 if (!CD3) var CD3 = {};
 
 CD3.DropDown = Class.create({
