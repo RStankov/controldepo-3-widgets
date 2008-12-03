@@ -1,6 +1,6 @@
 // ControlDepo 3 Widget Component
-// @date 07.10.2008
-// @version 1.1
+// @date 03.12.2008
+// @version 1.2
 // based on 
 //		Justin Palmer's EventSelectors (http://encytemedia.com/event-selectors)
 // 		Dan Webb's LowPro (http://svn.danwebb.net/external/lowpro)
@@ -38,7 +38,7 @@ Object.extend(CD3.Behaviors, {
 	},
 	assignIf: function(selector, rules){
 		var parent = $$(selector).first();
-		if (parent) CD3.Behaviors.assign(rules, parent);
+		if (parent) CD3.Behaviors.assign(Object.isFunction(rules) ? rules(parent) : rules, parent);
 	},
 	when: function(selector, rules){
 		document.observe('dom:loaded', CD3.Behaviors.assignIf.curry(selector, rules));
