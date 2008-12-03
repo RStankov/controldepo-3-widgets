@@ -50,9 +50,9 @@ Object.extend(CD3.Behaviors, {
 	},
 	delegate: function(rules){
 		return function(e){
-			var element;
+			var element = Event.element(e), elements = [element].concat(element.ancestors());
 			for (var selector in rules)
-				if (element = e.findElement(selector))
+				if (element = Selector.matchElements(elements, selector)[0])
 					return rules[selector].call(element, e);
 		}
 	},
