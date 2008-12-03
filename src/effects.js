@@ -14,8 +14,8 @@ Effect.Mutate = function(from, into){
 	into.show();
 	
 	return new Effect.Parallel([
-		new Effect.Morph(from,		{sync: true, style: style + 'opacity: 0.0;'}),
-		new Effect.Morph(into,		{sync: true, style: style + 'opacity: 1.0;'})
+		new Effect.Morph(from, {sync: true, style: style + 'opacity: 0.0;'}),
+		new Effect.Morph(into, {sync: true, style: style + 'opacity: 1.0;'})
 	], Object.extend({
 		afterFinishInternal: function(e){
 			into.undoClipping();
