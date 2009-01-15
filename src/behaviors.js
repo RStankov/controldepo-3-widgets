@@ -11,11 +11,12 @@ CD3.Behaviors = function(rules){
 Object.extend(CD3.Behaviors, {
 	cache: [],
 	assign: function(rules, parent){
+		parent = parent || document;
 		for (var selector in rules){
 			var observer = rules[selector];
 			selector.split(',').each(function(sel){
 				var parts = sel.split(/:(?=[a-z]+$)/), css = parts.shift(), event = parts.join('');
-				Selector.findChildElements(parent || document, [css]).each(function(element){
+				Selector.findChildElements(parent, [css]).each(function(element){
 					if (event) {
 						CD3.Behaviors.observe(element, event, observer);
 					} else if (Object.isArray(observer)){
