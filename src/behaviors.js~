@@ -35,12 +35,12 @@ Object.extend(CD3.Behaviors, {
 			});
 		}
 	},
-	when: function(selector, rules){
-		document.observe('dom:loaded', CD3.Behaviors.assignIf.curry(selector, rules));
-	},
 	assignIf: function(selector, rules){
 		var parent = $$(selector).first();
 		if (parent) CD3.Behaviors.assign(Object.isFunction(rules) ? rules(parent) : rules, parent);
+	},
+	when: function(selector, rules){
+		document.observe('dom:loaded', CD3.Behaviors.assignIf.curry(selector, rules));
 	},
 	observe: function(element, event, observer){
 		if (!Object.isFunction(observer))
