@@ -26,7 +26,8 @@ CD3.Select = Class.create(CD3.DropDown, {
 		// get options
 		var options = Object.extend({
 			onChange: null,
-			topBottom: false
+			topBottom: false,
+			reference: false
 		}, arguments[1] || {});
 
 		// add top / bottom lines		
@@ -42,6 +43,9 @@ CD3.Select = Class.create(CD3.DropDown, {
 		// add options
 		if ($A(select.options).each(this.addOption.bind(this)).length > 6)
 			this.div.addClassName('scrolled');
+		
+		if (options.reference)
+			this.constructor.instances[Object.isString(options.reference) ? options.reference : select.name] = this;
 		
 		// delete old select
 		Element.remove(select);
@@ -81,3 +85,5 @@ CD3.Select = Class.create(CD3.DropDown, {
 			this.onChange.call(this, option.value);
 	}
 });
+
+CD3.Select.instances = {};
