@@ -49,6 +49,11 @@ CD3.Select = Class.create(CD3.DropDown, {
 		// add events
 		this.bindEvents();
 	},
+	destroy: function(){
+		this.unbindEvents();
+		this.removeOptions();
+		this.container.remove();
+	},
 	addOption: function (option){
 		this.ul.insert(new Element('li').insert(
 			new Element('a', {href: 'javascript:;'}).update(option.text).observe('click', this.select.bind(this, option))

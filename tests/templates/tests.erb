@@ -1,0 +1,7 @@
+<ul>
+	<% for file in testcases %>
+	<li>
+		<a href="unit/<%= file %>.html" target="testcase"><%= file.capitalize %>
+	</li>
+	<% end %>
+</ul>

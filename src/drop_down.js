@@ -12,6 +12,11 @@ CD3.DropDown = Class.create({
 		this.link.observe('click', this.toggle.bind(this));
 		this.clickObserver = this.close.bind(this);
 	},
+	unbindEvents: function(){
+		this.link.observe('click');
+		document.stopObserving('click', this.clickObserver);
+		this.clickObserver = Prototype.emptyFunction();
+	},
 	toggle: function(){
 		this[this.div.visible() ? 'hide' : 'show']();
 	},
