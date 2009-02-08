@@ -17,19 +17,67 @@
 		<div id="scripts"></div>
 		<div id="playground"></div>
 		<script type="text/javascript">
-			var select;
-			new Test.Unit.Runner({
-				setup: function(){
-					$('playground').innerHTML = '<select id="test"><option value="1">1</opition></select>';
-					select = new CD3.Select('test');
-				},
-				teardown: function(){
-					if (select){
-						select.destroy();
-						select = null;
+			new Test.Unit.Runner((function(){
+				var select;
+				
+				function getOptions(){
+					return $A(select.ul.getElementsByTagName('a'));
+				}
+				
+				function getOptionsCount(){
+					return getOptions().length;
+				}
+								
+				return {
+					setup: function(){
+						$('playground').innerHTML = '<select id="test"><option value="1">1</opition></select>';
+						select = new CD3.Select('test');
+					},
+					teardown: function(){
+						if (select){
+							select.destroy();
+							select = null;
+						}
+					},
+					testAddOption: function(){
+						var before = getOptionsCount();
+						select.addOption({value: 2, text: 2});
+						this.assertEqual(before + 1, getOptionsCount());
+					},
+					testRemoveOptions: function(){
+						if (getOptionsCount() == 0) {
+							select.addOption({value: 2, text: 2});
+						}
+						
+						this.assert(getOptionsCount() > 0);
+						
+						select.removeOptions();
+												
+						this.assert(getOptionsCount() === 0);
+					},
+					testSetOptions: function(){
+						var before = getOptionsCount();
+						
+						var options = [];
+						$(1, before + 4).each(function(v){ options.push({value: v, text: v}) });
+						
+						select.setOptions(options);
+						
+						this.assert(before != getOptionsCount());
+						
+						var current = getOptions();
+						for(var i=0; i<current.length; i++){
+							this.assertEqual(options[i].text, current[i].innerHTML);
+						}
+						
+						before = current.length;
+						
+						select.setOptions(options, true);
+						
+						this.assertEqual(options.length + before, getOptionsCount());
 					}
 				}
-			});
+			})());
 		</script>
 	</body>
 </html>

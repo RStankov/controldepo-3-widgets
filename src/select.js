@@ -65,6 +65,13 @@ CD3.Select = Class.create(CD3.DropDown, {
 			li.remove();
 		});
 	},
+	setOptions: function(options, dontClear){
+		if (dontClear !== true) this.removeOptions();
+
+		$A(options).each(this.addOption.bind(this));
+
+		if (dontClear !== true) this.select(options[0]);
+	},
 	select: function(option){
 		this.linkspan.innerHTML = option.text;
 		this.hidden.value		= option.value != null ? option.value : option.text;
