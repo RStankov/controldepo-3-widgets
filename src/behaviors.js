@@ -10,7 +10,7 @@ CD3.Behaviors = function(rules){
 
 Object.extend(CD3.Behaviors, (function(){
 	function observe(element, event, observer){
-		$(element).observe(event, Object.isFunction(observer) ? observer : delegate(observer));
+		Event.observe(element, event, Object.isFunction(observer) ? observer : delegate(observer));
 	}
 	
 	function delegate(rules){
