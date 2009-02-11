@@ -1,4 +1,5 @@
-09.02.2009 - added CD3.Select.instances and reference option
-09.02.2009 - added CD3.Select.setOptions
-09.02.2009 - added CD3.DropDown.unbindEvents and CD3.Select.destroy
-08.02.2009 - added basic unit test utils
+11.02.2009 | remove cache from CD3.Behaviors
+09.02.2009 | added CD3.Select.instances and reference option
+09.02.2009 | added CD3.Select.setOptions
+09.02.2009 | added CD3.DropDown.unbindEvents and CD3.Select.destroy
+08.02.2009 | added basic unit test utils
