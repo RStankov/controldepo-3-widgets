@@ -1,3 +1,5 @@
+//= require <src/header.js>
+
 Event.wheel = function(element, callback) {
 	var __onwheel = function (event) {
 		var delta = 0;
@@ -19,8 +21,6 @@ Event.wheel = function(element, callback) {
 		$(element).observe('mousewheel', __onwheel);
 };
 
-if (!CD3) var CD3 = {};
-			
 CD3.Scroller = Class.create({
 	initialize: function (container, scroller, options){
 		// options

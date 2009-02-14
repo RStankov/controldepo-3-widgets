@@ -1,3 +1,4 @@
+14.02.2009 | start using Sprockets for dependancy management
 11.02.2009 | remove cache from CD3.Behaviors
 09.02.2009 | added CD3.Select.instances and reference option
 09.02.2009 | added CD3.Select.setOptions

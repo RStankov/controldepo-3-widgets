@@ -1,8 +1,9 @@
-// ControlDepo 3 Widget Component
-// based on 
-//		Justin Palmer's EventSelectors (http://encytemedia.com/event-selectors)
-// 		Dan Webb's LowPro (http://svn.danwebb.net/external/lowpro)
-if (!CD3) var CD3 = {};
+/*
+ * based on:
+ *    Justin Palmer's EventSelectors (http://encytemedia.com/event-selectors)
+ *    Dan Webb's LowPro (http://svn.danwebb.net/external/lowpro)
+ */
+//= require <src/header.js>
 
 CD3.Behaviors = function(rules){
 	document.observe('dom:loaded', CD3.Behaviors.assign.curry(rules, null));

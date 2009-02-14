@@ -1,4 +1,5 @@
-if (!CD3) var CD3 = {};
+//= require <src/header.js>
+//= require <src/drop_down.js>
 
 CD3.Select = Class.create(CD3.DropDown, {
 	initialize: function(select){		

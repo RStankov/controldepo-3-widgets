@@ -1,4 +1,4 @@
-if (!CD3) var CD3 = {};
+//= require <src/header.js>
 
 CD3.Accordion = Class.create({
 	initialize: function(element){

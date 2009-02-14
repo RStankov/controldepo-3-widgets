@@ -1,3 +1,4 @@
+//= require <vendor/effects.js>
 Effect.Mutate = function(from, into){
 	from = $(from);
 	from.absolutize();

@@ -1,4 +1,4 @@
-if (!CD3) var CD3 = {};
+//= require <src/header.js>
 
 CD3.FontSwitcher = Class.create({
 	initialize: function(panel, element, options){
