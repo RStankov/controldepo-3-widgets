@@ -1,4 +1,3 @@
-//= require <vendor/effects.js>
 Effect.Mutate = function(from, into){
 	from = $(from);
 	from.absolutize();
@@ -37,9 +36,30 @@ Effect.Mutate = function(from, into){
 	}, arguments[2] || {}));
 };
 
+Effect.FadeBlind = function(element){
+	return new Effect.Parallel([Effect.BlindUp(element, {sync: true}), Effect.Fade(element, {sync: true})], arguments[1] || {});
+};
+Effect.AppearBlind = function(element){
+	return new Effect.Parallel([Effect.BlindDown(element, {sync: true}), Effect.Appear(element, {sync: true})], arguments[1] || {});
+};
+
+// enable Effect.toggle(element, 'fading_blind');
+Effect.PAIRS['fading_blind'] = ['AppearBlind', 'FadeBlind'];
+
 Element.addMethods({
+		fadeBlind: function(element, options){
+		element = $(element);
+		Effect.FadeBlind(element, options);
+		return element;
+	},
+		appearBlind: function(element, options){
+		element = $(element);
+		Effect.AppearBlind(element, options);
+		return element;
+	},
 	mutateTo: function(element, into, options){
-		Effect.Mutate($(element), into, options)
+		element = $(element)
+		Effect.Mutate(element, into, options)
 		return element;
 	}
 });
