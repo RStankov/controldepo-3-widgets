@@ -1,7 +1,7 @@
 require 'erb'
 require 'rake'
 
-CD3W_SRC  = 'src/*'
+CD3W_SRC  = 'src/**/*.js'
 CD3W_DIST = 'dist/cd3w.js'
 
 desc 'Create a package for ControlDepo 3 Widgets ( accepts componets and save_to arguments )'
@@ -28,7 +28,7 @@ task :dist do
   destination = ENV['save_to'].nil? ? CD3W_DIST : ENV['save_to']
   
   secretary = Sprockets::Secretary.new(
-    :load_path    => ["vendor/*.js", "src/*.js"],
+    :load_path    => ["vendor/*.js", CD3W_SRC],
     :source_files => sources
   )
   
