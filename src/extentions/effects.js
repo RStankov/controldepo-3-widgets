@@ -23,7 +23,7 @@ Effect.Mutate = function(from, into){
 			into.style.height = null;
 			into = null;
 			
-			if (e.options.repace){
+			if (e.options.replace){
 				from.remove();
 				from = null;
 				return;
