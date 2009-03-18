@@ -1,30 +1,27 @@
 //= require <src/header.js>
 
 CD3.Accordion = Class.create({
-	initialize: function(element){
+	initialize: function(element, options){
 		element = $(element);
-		
-		this.options = Object.extend({
-			triggers:		'.trigger',
-			content:		'.content',
-			event:			'click',
-			duration:		1,
-			selected:	'selected'
-		}, arguments[1] || {});
+		options = Object.extend({
+			triggers:	'.trigger',
+			content:	'.content',
+			event:		'click',
+			selected:	'selected',
+			duration:	1
+		}, options || {});
 		
 		this.trigger	= null;
-		this.containers	= element.select(this.options.content);
+		this.containers	= element.select(options.content);
 		this.current	= this.containers.find(function(el){ return el.visible(); });
+		this.options	= {selected: options.selected, duration: options.duration};
 		
-		element.select(this.options.triggers).each(function(trigger, key){
-			if (trigger.hasClassName(this.options.selected)){
+		element.select(options.triggers).each(function(trigger, key){
+			if (trigger.hasClassName(options.selected))
 				this.trigger = trigger;
-			}
 			
-			trigger.observe(this.options.event, this.activate.bind(this, key, trigger));
+			trigger.observe(options.event, this.activate.bind(this, key, trigger));
 		}.bind(this));
-		
-		delete(this.options.triggers, this.options.content, this.options.event);
 	},
 	activate: function(key, trigger, e){
 		e.stop();
