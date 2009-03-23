@@ -1,3 +1,4 @@
+23.03.2009 | added element.removeWithEffect extentionss
 27.02.2009 | added CD3.Behaviors.Hover and CD3.Behaviors.TitleAsDefaultValue
 23.02.2009 | added CD3.Slider
 14.02.2009 | added Effect.FadeBlind and Effect.AppearBlind ( + Effect.toggle('fading_blind') and Element.fadeBlind / appearBlind )

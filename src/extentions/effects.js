@@ -47,12 +47,12 @@ Effect.AppearBlind = function(element){
 Effect.PAIRS['fading_blind'] = ['AppearBlind', 'FadeBlind'];
 
 Element.addMethods({
-		fadeBlind: function(element, options){
+	fadeBlind: function(element, options){
 		element = $(element);
 		Effect.FadeBlind(element, options);
 		return element;
 	},
-		appearBlind: function(element, options){
+	appearBlind: function(element, options){
 		element = $(element);
 		Effect.AppearBlind(element, options);
 		return element;
@@ -60,6 +60,26 @@ Element.addMethods({
 	mutateTo: function(element, into, options){
 		element = $(element)
 		Effect.Mutate(element, into, options)
+		return element;
+	},
+	removeWithEffect: function(element, effect, options){
+		element = $(element);
+		options = options || {};
+		
+		options.afterFinish = 'afterFinish' in options ? 
+			options.afterFinish.wrap(function(callback, e){ callback(e); element.remove(); }) : 
+			function(){ element.remove(); };
+		
+		effect = effect.camelize();
+		effect = effect.charAt(0).toUpperCase() + effect.substring(1);
+		effect = Effect[effect];
+		
+		if (effect.prototype.initialize){
+			new effect(element, options);
+		} else {
+			effect(element, options);
+		}
+		
 		return element;
 	}
 });
