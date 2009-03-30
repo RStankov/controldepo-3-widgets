@@ -92,8 +92,11 @@
 			<option value="5">value: 5</option>
 			<option value="6">value: 6</option>
 		</select>
-		<div id="value"></div>
 		
+		<div id="value">Selected value: 1</div>
+		
+		 ( <a href="#" id="add_option_button">add option</a> )
+				
 		<script type="text/javascript">
 			new CD3.DropDown('dropdown');
 			
@@ -101,10 +104,14 @@
 				var link = e.findElement('a');
 				if (link) alert('Goto: ' + link.innerHTML);
 			});
-		
+			
+			var customSelect;
 			$$('select').each(function(select){
-				new CD3.Select(select, {onChange: function(value) { $('value').innerHTML = 'Selected value: ' + value; }});
+				customSelect = new CD3.Select(select, { onChange: function(value) { $('value').innerHTML = 'Selected value: ' + value; }});
 			});
+			
+			var num = 0;
+			$('add_option_button').observe('click', function(e){ customSelect.addOption({text: 'Added option #' + (++num), value: num}); });
 		</script>
 	</body>
 </html>
