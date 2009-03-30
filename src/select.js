@@ -28,7 +28,8 @@ CD3.Select = Class.create(CD3.DropDown, {
 		var options = Object.extend({
 			onChange: null,
 			topBottom: false,
-			reference: false
+			reference: false,
+			scrollLimit: 6
 		}, arguments[1] || {});
 
 		// add top / bottom lines		
@@ -42,7 +43,7 @@ CD3.Select = Class.create(CD3.DropDown, {
 		if (options.onChange) this.onChange = options.onChange;
 		
 		// add options
-		if ($A(select.options).each(this.addOption.bind(this)).length > 6)
+		if ($A(select.options).each(this.addOption.bind(this)).length > options.scrollLimit)
 			this.div.addClassName('scrolled');
 		
 		if (options.reference)
