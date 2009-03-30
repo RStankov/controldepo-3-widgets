@@ -11,7 +11,7 @@ CD3.Select = Class.create(CD3.DropDown, {
 		this.linkspan	= new Element('span').update(select.selectedIndex > -1 ? select.options[select.selectedIndex || 0].text : '');
 		this.hidden		= new Element('input', {type: 'hidden', name: select.name, value: select.getValue()});
 		this.div		= new Element('div').hide();
-		this.ul			= new Element('ul');
+		this.ul			= new Element('ul').observe('click', this.selectOption.bind(this));
 		
 		if (select.className)
 			this.container.addClassName(select.className);
@@ -43,7 +43,10 @@ CD3.Select = Class.create(CD3.DropDown, {
 		if (options.onChange) this.onChange = options.onChange;
 		
 		// add options
-		if ($A(select.options).each(this.addOption.bind(this)).length > options.scrollLimit)
+		$A(select.options).each(this.addOption.bind(this))
+		
+		// check for scrolled class
+		if (options.length > options.scrollLimit)
 			this.div.addClassName('scrolled');
 		
 		if (options.reference)
@@ -62,12 +65,14 @@ CD3.Select = Class.create(CD3.DropDown, {
 	},
 	addOption: function (option){
 		this.ul.insert(new Element('li').insert(
-			new Element('a', {href: 'javascript:;'}).update(option.text).observe('click', this.select.bind(this, option))
+			new Element('a', {href: 'javascript:;'})
+				.store('option', {text: option.text, value: option.value != null ? option.value : option.text})
+				.update(option.text)
 		));
 	},
 	removeOptions: function(){
 		this.ul.select('li').each(function(li){
-			li.down('a').stopObserving('click');
+			li.down('a').store('option', null).stopObserving('click');
 			li.remove();
 		});
 	},
@@ -78,9 +83,13 @@ CD3.Select = Class.create(CD3.DropDown, {
 
 		if (dontClear !== true) this.select(options[0]);
 	},
+	selectOption: function(e){
+		var element = e.findElement('a');
+		if (element) this.select(element.retrieve('option'));
+	},
 	select: function(option){
 		this.linkspan.innerHTML = option.text;
-		this.hidden.value		= option.value != null ? option.value : option.text;
+		this.hidden.value		= option.value;
 		this.hide();
 		
 		if (this.onChange)
