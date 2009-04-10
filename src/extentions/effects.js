@@ -4,7 +4,15 @@ Effect.Mutate = function(from, into){
 	
 	into = from.previous();
 	
-	var style = 'width: ' + into.getWidth() + 'px; height: ' + into.getHeight() + 'px;';
+	var style,
+		fromWidth	= from.getWidth(),
+		fromHeight	= from.getHeight(),
+		intoWidth	= into.getWidth(),
+		intoHeight	= into.getHeight();
+	
+	if (fromWidth != intoWidth)		style += 'width: ' + intoWidth + 'px; ';
+	if (fromHeight != intoHeight)	style += 'height: ' + intoHeight + 'px; ';
+	
 	return new Effect.Parallel([
 		new Effect.Morph(from, {sync: true, style: style + 'opacity: 0.0;'}),
 		new Effect.Morph(into, {sync: true, style: style + 'opacity: 1.0;'})
@@ -13,7 +21,7 @@ Effect.Mutate = function(from, into){
 			from.absolutize();
 			from.makeClipping();
 			
-			into.setStyle({ width: from.getWidth() + 'px', height: from.getHeight() + 'px' });
+			into.setStyle({width: fromWidth + 'px', height: intoWidth + 'px' });
 			into.makeClipping();
 			into.setOpacity(0.0);
 			into.show();
@@ -32,6 +40,8 @@ Effect.Mutate = function(from, into){
 			
 			from.relativize();
 			from.undoClipping();
+			from.style.width = null;
+			from.style.height = null;
 			from.hide();
 		}
 	}, arguments[2] || {}));
