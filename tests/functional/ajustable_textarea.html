@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Select : functional test</title>
+		<script type="text/javascript" src="../../vendor/prototype.js"></script>
+		<script type="text/javascript" src="../../vendor/effects.js"></script>
+		<script type="text/javascript" src="../../src/header.js"></script>
+		<script type="text/javascript" src="../../src/ajustable_textarea.js"></script>
+	</head>
+	<body>
+		<div>
+			<textarea id="clean_textarea"></textarea>
+		</div>
+		<div>
+			<textarea id="with_set_rows" rows="5"></textarea>
+		</div>
+		<div>
+			<textarea id="with_set_height" style="height: 100px;"></textarea>
+		</div>
+		<div>
+			<textarea id="with_set_rows_and_data" rows="4">
+line 1
+line 2
+line 3
+line 4
+line 5
+			</textarea>
+		</div>
+		<script type="text/javascript">
+			new CD3.AdjustableTextarea('clean_textarea');
+			new CD3.AdjustableTextarea('with_set_rows');
+			new CD3.AdjustableTextarea('with_set_height');
+			new CD3.AdjustableTextarea('with_set_rows_and_data');
+		</script>
+	</body>
+</html>
