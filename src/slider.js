@@ -20,9 +20,9 @@ CD3.Slider = Class.create({
 		this.sliding	= false;
 		
 		this.effectOptions = {
-			duration: options.effectDuration || 0.8 ,
-			queue: {scope: 'cd3:slider', limit:1},
-			afterFinish: this.afterSlide.bind(this, options.afterSlide)
+			duration:		options.effectDuration || 0.8 ,
+			queue:			{scope: 'cd3:slider', limit:1},
+			afterFinish:	this.afterSlide.bind(this, options.afterSlide)
 		};
 		
 		if (options.beforeSlide){
@@ -30,7 +30,7 @@ CD3.Slider = Class.create({
 		}
 		
 		var pos = parseInt(this.container.style[this.scroll[0]]) || 0;
-		console.log(this);
+		
 		this.setVisibility('prev', pos != 0);
 		this.setVisibility('next', this.container[this.scroll[1]] - (options.scrollBy - pos) >= 1);
 	},
@@ -43,7 +43,6 @@ CD3.Slider = Class.create({
 		var property	= parseInt(this.container.style[this.scroll[0]]) || 0,	// top or left
 			offset		= this.container[this.scroll[1]]; // offsetHeight or offsetWidth
 		
-//		if ((moveBy > 0 && (property > -1 || property != 0)) || (moveBy < 0 && offset + moveBy + property < 0))
 		if ((moveBy > 0 && property > 0) || (moveBy < 0 && property + offset + moveBy < 0)) return;
 		
 		this.setVisibility('prev', property + moveBy < 0);
@@ -54,7 +53,7 @@ CD3.Slider = Class.create({
 				
 		var options = this.effectOptions;
 		options[this.scroll[2]] = moveBy; // x or y
-		console.log(options);
+		
 		new Effect.Move(this.container, options);
 	},
 	afterSlide: function(callback){
