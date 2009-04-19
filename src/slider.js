@@ -1,3 +1,5 @@
+//= require <src/header.js>
+
 CD3.Slider = Class.create({
 	initialize: function(container, options){
 		var options = Object.extend({
