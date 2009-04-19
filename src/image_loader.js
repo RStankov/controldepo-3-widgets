@@ -11,15 +11,15 @@ CD3.ImageLoader = function(){
 	}
 	
 	function onLoad(callback){
+		callback(loader);
 		clearLoader();
-		callback();
 	}
 	
 	return function(src, callback){
 		clearLoader();
 		
 		loader			= new Image();
-		loader.onload	= onLoad.curry(callback.curry(src));
+		loader.onload	= onLoad.curry(callback);
 		loader.src		= src;
 	};
 };

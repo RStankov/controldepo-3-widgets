@@ -14,8 +14,8 @@
 				alert('This message should not run');
 			});
 			
-			CD3.loadImage('../assets/image_loader.jpg', function(src){
-				$('container').insert({ top: new Element('img', {src: src}) });
+			CD3.loadImage('../assets/image_loader.jpg', function(image){
+				$('container').insert({ top: image });
 			});
 		</script>
 	</body>
