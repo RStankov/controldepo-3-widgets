@@ -1,3 +1,4 @@
+19.04.2009 | added CD3.ImageLoader and CD3.loadImage
 13.04.2009 | added CD3.AdjustableTextarea
 23.03.2009 | added element.removeWithEffect extention
 27.02.2009 | added CD3.Behaviors.Hover and CD3.Behaviors.TitleAsDefaultValue
