@@ -1,10 +1,10 @@
 Effect.Mutate = function(from, into){
 	from = $(from);
-	from.insert({before: $(into) || into});
+	from.insert({after: $(into) || into});
 	
-	into = from.previous();
+	into = from.next();
 	
-	var style,
+	var style		= '',
 		fromWidth	= from.getWidth(),
 		fromHeight	= from.getHeight(),
 		intoWidth	= into.getWidth(),
@@ -21,7 +21,7 @@ Effect.Mutate = function(from, into){
 			from.absolutize();
 			from.makeClipping();
 			
-			into.setStyle({width: fromWidth + 'px', height: intoWidth + 'px' });
+			into.setStyle({width: fromWidth + 'px', height: fromHeight + 'px' });
 			into.makeClipping();
 			into.setOpacity(0.0);
 			into.show();
@@ -32,7 +32,7 @@ Effect.Mutate = function(from, into){
 			into.style.height = null;
 			into = null;
 			
-			if (e.options.repace){
+			if (e.options.replace){
 				from.remove();
 				from = null;
 				return;
