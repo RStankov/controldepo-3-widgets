@@ -1,6 +1,6 @@
 (function(){
   function delegateHandler(e){
-    var element = e._target = e.element(), elements = [element].concat(element.ancestors());
+    var element = e.element(), elements = [element].concat(element.ancestors());
     ((this.retrieve('prototype_delegates') || $H()).get(e.eventName || e.type) || []).each(function(pair){
       if (element = Selector.matchElements(elements, pair.key)[0])
         pair.value.invoke('call', element, e); 

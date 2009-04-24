@@ -1,49 +1,51 @@
 //= require <src/header.js>
+//= require <extentions/event.js>
 
 CD3.Accordion = Class.create({
 	initialize: function(element, options){
 		element = $(element);
-		options = Object.extend({
+		this.options = options = Object.extend({
 			triggers:	'.trigger',
 			content:	'.content',
 			event:		'click',
 			selected:	'selected',
-			duration:	1
+			duration:	1,
+			open:		'blindDown',
+			close:		'blindUp',
 		}, options || {});
 		
 		this.trigger	= null;
 		this.containers	= element.select(options.content);
-		this.current	= this.containers.find(function(el){ return el.visible(); });
-		this.options	= {selected: options.selected, duration: options.duration};
+		this.current	= this.containers.find(Element.visible);
 		
 		element.select(options.triggers).each(function(trigger, key){
-			if (trigger.hasClassName(options.selected))
-				this.trigger = trigger;
+			if (trigger.hasClassName(options.selected)) this.trigger = trigger;
 			
-			trigger.observe(options.event, this.activate.bind(this, key, trigger));
+			trigger.store('cd3:accordion:key', key);
 		}.bind(this));
+		element.delegate(options.triggers, options.event, this.activate.bind(this));
 	},
-	activate: function(key, trigger, e){
+	activate: function(e){
 		e.stop();
 				
-		var container = this.containers[key],
-			duration  = this.options.duration;
+		var options		= this.options,
+			duration	= options.duration,
+			trigger		= e.findElement(options.trigger),
+			container	= this.containers[trigger.retrieve('cd3:accordion:key')];
 		
 		if (!container) return;
 		
-		if (this.current && this.current != container)
-			this.current.blindUp({duration: (duration > 0.2 ? duration - 0.2 : duration)});
-		
-		if (this.trigger && this.trigger != trigger)
-			this.trigger.removeClassName(this.options.selected);
-		
-		this.trigger = trigger.toggleClassName(this.options.selected);
+		if (this.trigger){
+			this.trigger.removeClassName(options.selected);
+			this.current[options.close]({duration: (duration > 0.2 ? duration - 0.2 : duration)});
+		}
 		
 		if (container.visible()){
-			container.blindUp({duration: (duration > 0.2 ? duration - 0.2 : duration)});
 			this.current = null;
+			this.trigger = null;
 		} else {
-			this.current = container.blindDown({duration: duration});
+			this.current = container[options.open]({duration: duration});
+			this.trigger = trigger;
 		}
 	}
 });
