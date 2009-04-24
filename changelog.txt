@@ -1,3 +1,4 @@
+24.04.2009 | added Event.delegate and sub methods
 19.04.2009 | added CD3.setRule
 19.04.2009 | added CD3.ImageLoader and CD3.loadImage
 13.04.2009 | added CD3.AdjustableTextarea
