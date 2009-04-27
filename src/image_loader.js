@@ -15,12 +15,17 @@ CD3.ImageLoader = function(){
 		clearLoader();
 	}
 	
-	return function(src, callback){
+	function load(src, callback){
 		clearLoader();
 		
 		loader			= new Image();
 		loader.onload	= onLoad.curry(callback);
 		loader.src		= src;
-	};
+	}
+	
+	if (arguments.length == 2){
+		load(arguments[0], arguments[1]);
+	}
+	
+	return load;
 };
-CD3.loadImage = CD3.ImageLoader();

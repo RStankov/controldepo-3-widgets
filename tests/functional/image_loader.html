@@ -10,11 +10,11 @@
 	</head>
 	<body id="container">	
 		<script type="text/javascript">
-			CD3.loadImage('dont_exists_image', function(){
+			CD3.ImageLoader('dont_exists_image', function(){
 				alert('This message should not run');
 			});
 			
-			CD3.loadImage('../assets/image_loader.jpg', function(image){
+			CD3.ImageLoader('../assets/image_loader.jpg', function(image){
 				$('container').insert({ top: image });
 			});
 		</script>
