@@ -1,3 +1,4 @@
+02.05.2009 | added CD3.Behaviors.ScrollTo
 27.04.2009 | removed CD3.loadImage
 24.04.2009 | added Event.delegate and sub methods
 19.04.2009 | added CD3.setRule
