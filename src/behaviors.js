@@ -12,18 +12,14 @@ CD3.Behaviors = function(rules){
 
 Object.extend(CD3.Behaviors, (function(){
 	function observe(element, event, observer){
-		Event.observe(element, event, Object.isFunction(observer) ? observer : delegate(observer));
-	}
-	
-	function delegate(rules){
-		return function(e){
-			var element = Event.element(e), elements = [element].concat(element.ancestors());
-			for (var selector in rules)
-				if (element = Selector.matchElements(elements, selector)[0])
-					return rules[selector].call(element, e);
+		if (Object.isFunction(observer)){
+			Event.observe(element, event, observer);
+		} else {
+			for(var selector in observer){
+				Event.delegate(element, selector, event, observer[selector]);
+			}
 		}
 	}
-	
 	return {
 		assign: function(rules, parent){
 			parent = parent || document;
