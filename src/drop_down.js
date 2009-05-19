@@ -1,4 +1,4 @@
-//= require <src/header.js>
+//= require "header"
 
 CD3.DropDown = Class.create({
 	initialize: function (container) {

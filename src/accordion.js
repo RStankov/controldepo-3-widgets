@@ -1,5 +1,5 @@
-//= require <src/header.js>
-//= require <extentions/event.js>
+//= require "header"
+//= require "extentions/event.js"
 
 CD3.Accordion = Class.create({
 	initialize: function(element, options){

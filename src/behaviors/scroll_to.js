@@ -1,5 +1,6 @@
-//= require <src/header.js>
-//= require <src/behaviors.js>
+//= require "../header"
+//= require "../behaviors"
+
 // Usage: 
 //  CD3.Behaviors({
 //   'a[href=^#]': CD3.Behaviors.ScrollTo

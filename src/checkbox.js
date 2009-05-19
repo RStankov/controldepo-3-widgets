@@ -1,4 +1,4 @@
-//= require <src/header.js>
+//= require "header"
 
 CD3.Checkbox = Class.create({
 	initialize: function(checkbox){

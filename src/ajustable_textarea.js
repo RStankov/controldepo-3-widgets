@@ -1,4 +1,4 @@
-//= require <src/header.js>
+//= require "header"
 
 CD3.AdjustableTextarea = Class.create({
 	initialize: function(textarea){

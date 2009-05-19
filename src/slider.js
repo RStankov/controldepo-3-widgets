@@ -1,4 +1,4 @@
-//= require <src/header.js>
+//= require "header"
 
 CD3.Slider = Class.create({
 	initialize: function(container, options){

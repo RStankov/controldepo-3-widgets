@@ -1,9 +1,6 @@
 require 'erb'
 require 'rake'
 
-CD3W_SRC  = 'src/**/*.js'
-CD3W_DIST = 'dist/cd3w.js'
-
 desc 'Create a package for ControlDepo 3 Widgets ( accepts componets and save_to arguments )'
 task :dist do
   begin
@@ -15,24 +12,15 @@ task :dist do
   end
   
   sources = if ENV['components'].nil?
-    [CD3W_SRC]
+    FileList['src/**/*.js']
   else
     ENV['components'].split(' ').inject [] do |memo, component|
-      path =  'src/' + component
-      path << '.js' unless component.end_with? '.js'
-      memo << path
+      memo << "src/#{component}.js"
     end
   end
   
-  sources.unshift 'src/header.js'
-  destination = ENV['save_to'].nil? ? CD3W_DIST : ENV['save_to']
-  
-  secretary = Sprockets::Secretary.new(
-    :load_path    => ["vendor/*.js", CD3W_SRC],
-    :source_files => sources
-  )
-  
-  secretary.concatenation.save_to(destination)
+  secretary = Sprockets::Secretary.new( :source_files => sources )
+  secretary.concatenation.save_to( ENV['save_to'].nil? ? 'dist/cd3w.js': ENV['save_to'] )
 end
 
 TESTS = 'tests/unit/';

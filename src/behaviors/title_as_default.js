@@ -1,5 +1,6 @@
-//= require <src/header.js>
-//= require <src/behaviors.js>
+//= require "../header"
+//= require "../behaviors"
+
 // Usage: 
 //  CD3.Behaviors({
 //   'input[type=text]': CD3.Behaviors.TitleAsDefaultValue

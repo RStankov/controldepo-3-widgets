@@ -1,4 +1,5 @@
-//= require <src/header.js>
+//= require "header"
+//= require "extentions/event.js"
 
 /*
  * based on:

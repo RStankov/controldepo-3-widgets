@@ -1,3 +1,5 @@
+//= require "header"
+
 CD3.setRule = function(selector, styles){
 	var i, x, sheet, rules;
 

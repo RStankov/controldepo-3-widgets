@@ -1,4 +1,4 @@
-//= require <src/header.js>
+//= require "header"
 
 CD3.Radio = Class.create({
 	initialize: function(radio){

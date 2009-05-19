@@ -1,4 +1,4 @@
-//= require <src/header.js>
+//= require "header"
 
 CD3.FontSwitcher = Class.create({
 	initialize: function(panel, element, options){

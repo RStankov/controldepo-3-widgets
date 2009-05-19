@@ -1,4 +1,4 @@
-//= require <src/header.js>
+//= require "header"
 
 Event.wheel = function(element, callback) {
 	var __onwheel = function (event) {
