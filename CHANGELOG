@@ -1,18 +1,18 @@
-20.05.2009 | removed CD3.Behaviors.when, CD3.Behaviors.assign, CD3.Behaviors.assignIf, and bind their functionality into CD3.Behaviors
-02.05.2009 | added CD3.Behaviors.ScrollTo
-27.04.2009 | removed CD3.loadImage
-24.04.2009 | added Event.delegate and sub methods
-19.04.2009 | added CD3.setRule
-19.04.2009 | added CD3.ImageLoader and CD3.loadImage
-13.04.2009 | added CD3.AdjustableTextarea
-23.03.2009 | added element.removeWithEffect extention
-27.02.2009 | added CD3.Behaviors.Hover and CD3.Behaviors.TitleAsDefaultValue
-23.02.2009 | added CD3.Slider
-14.02.2009 | added Effect.FadeBlind and Effect.AppearBlind ( + Effect.toggle('fading_blind') and Element.fadeBlind / appearBlind )
-14.02.2009 | added Element.extractId
-14.02.2009 | start using Sprockets for dependancy management
-11.02.2009 | remove cache from CD3.Behaviors
-09.02.2009 | added CD3.Select.instances and reference option
-09.02.2009 | added CD3.Select.setOptions
+20.05.2009 | removed CD3.Behaviors.when, CD3.Behaviors.assign, CD3.Behaviors.assignIf, and bind their functionality into CD3.Behaviors [rstankov]
+02.05.2009 | added CD3.Behaviors.ScrollTo [rstankov]
+27.04.2009 | removed CD3.loadImage [rstankov]
+24.04.2009 | added Event.delegate and sub methods [rstankov]
+19.04.2009 | added CD3.setRule [rstankov]
+19.04.2009 | added CD3.ImageLoader and CD3.loadImage [rstankov]
+13.04.2009 | added CD3.AdjustableTextarea [rstankov]
+23.03.2009 | added element.removeWithEffect extension [rstankov]
+27.02.2009 | added CD3.Behaviors.Hover and CD3.Behaviors.TitleAsDefaultValue [rstankov]
+23.02.2009 | added CD3.Slider [rstankov]
+14.02.2009 | added Effect.FadeBlind and Effect.AppearBlind ( + Effect.toggle('fading_blind') and Element.fadeBlind / appearBlind ) [rstankov]
+14.02.2009 | added Element.extractId [rstankov]
+14.02.2009 | start using Sprockets for dependancy management [rstankov]
+11.02.2009 | remove cache from CD3.Behaviors [rstankov]
+09.02.2009 | added CD3.Select.instances and reference option [rstankov]
+09.02.2009 | added CD3.Select.setOptions [rstankov]
 09.02.2009 | added CD3.DropDown.unbindEvents and CD3.Select.destroy
 08.02.2009 | added basic unit test utils

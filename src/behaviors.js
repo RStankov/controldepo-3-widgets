@@ -1,5 +1,5 @@
 //= require "header"
-//= require "extentions/event.js"
+//= require "extensions/event.js"
 
 /*
  * based on:
@@ -22,7 +22,7 @@ CD3.Behaviors = (function(){
 		for (var selector in rules){
 			var observer = rules[selector], parts = selector.split(/:(?=[a-z]+$)/), css = parts.shift(), event = parts.join('');
 			Selector.findChildElements(root, [css]).each(function(element){
-				if (event) {
+				if (event){
 					observe(element, event, observer);
 				} else if (observer.prototype && observer.prototype.initialize){
 					new observer(element);
