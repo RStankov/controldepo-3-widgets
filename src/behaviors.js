@@ -7,11 +7,7 @@
  *    Dan Webb's LowPro (http://svn.danwebb.net/external/lowpro)
  */
  
-CD3.Behaviors = function(rules){
-	document.observe('dom:loaded', CD3.Behaviors.assign.curry(rules, null));
-}
-
-Object.extend(CD3.Behaviors, (function(){
+CD3.Behaviors = (function(){
 	function observe(element, event, observer){
 		if (Object.isFunction(observer)){
 			Event.observe(element, event, observer);
@@ -21,36 +17,47 @@ Object.extend(CD3.Behaviors, (function(){
 			}
 		}
 	}
-	return {
-		assign: function(rules, parent){
-			parent = parent || document;
-			for (var selector in rules){
-				var observer = rules[selector];
-				selector.split(',').each(function(sel){
-					var parts = sel.split(/:(?=[a-z]+$)/), css = parts.shift(), event = parts.join('');
-					Selector.findChildElements(parent, [css]).each(function(element){
-						if (event) {
-							observe(element, event, observer);
-						} else if (Object.isArray(observer)){
-							var klass = observer.shift();
-							new klass(element, observer.shift()); 
-						} else if (observer.prototype && observer.prototype.initialize){
-							new observer(element);
-						} else if (Object.isFunction(observer)){
-							observer.call(element, element);
-						} else {
-							for(var e in observer) observe(element, e, observer[e]);
-						}
-					});
+
+	function assign(root, rules){
+		var selector, observer;
+		for (selector in rules){
+			observer = rules[selector];
+			selector.split(',').each(function(selector){
+				var parts = selector.split(/:(?=[a-z]+$)/), event = parts.pop(), css = parts.join('');
+				Selector.findChildElements(root, [css]).each(function(element){
+					if (event) {
+						observe(element, event, observer);
+					} else if (observer.prototype && observer.prototype.initialize){
+						new observer(element);
+					} else if (Object.isFunction(observer)){
+						observer.call(element, element);
+					} else if (Object.isArray(observer)){
+						var klass = observer.shift();
+						new klass(element, observer.shift());
+					} else {
+						for(var e in observer) observe(element, e, observer[e]);
+					}
 				});
-			}
-		},
-		when: function(selector, rules){
-			document.observe('dom:loaded', CD3.Behaviors.assignIf.curry(selector, rules));
-		},
-		assignIf: function(selector, rules){
-			var parent = $$(selector).first();
-			if (parent) CD3.Behaviors.assign(Object.isFunction(rules) ? rules(parent) : rules, parent);
+			});
+		}
+	}
+
+	function run(args){
+		if (args.length == 1){
+			var root = document, rules = args[0]; 
+		} else {
+			var root = $$(args[0]).first(), rules = args[1];
+		}
+
+		if (root) assign(root, Object.isFunction(rules) ? rules(root) : rules);
+	}
+
+	return function(){
+		if (document.loaded){
+			run(arguments);
+		} else {
+			document.observe('dom:loaded', run.curry(arguments));
 		}
 	};
-})());
+})();
+
