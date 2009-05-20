@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>CD3.Behaviors:Core</title>
+		<link rel="stylesheet" href="../test.css" type="text/css" />
+		<script type="text/javascript" src="../../vendor/prototype.js"></script>
+		<script type="text/javascript" src="../../vendor/effects.js"></script>
+		<script type="text/javascript" src="../../vendor/unittest.js"></script>
+		<script type="text/javascript" src="../../src/header.js"></script>
+		<script type="text/javascript" src="../../src/extentions/event.js"></script>
+		<script type="text/javascript" src="../../src/behaviors.js"></script>
+	</head>
+	<body>
+		<div style="display: none;">
+			<div id="test-normal-selector">
+				this is text in #container1, now we must have a header
+				<br />
+				<a href="#">click me</a>
+			</div>
+			<div id="test-class-initializer">
+				<a href="#" class="first">link with no value</a>
+				<a href="#" class="second">link with value 5</a>
+			</div>
+			<div id="test-event-selector">
+				<a href="#">link 1</a>
+				<a href="#" class="last">link 2</a>
+			</div>
+			<div id="test-event-delegation">
+				<ul>
+					<li><a href="#">link</a></li>
+					<li><a href="#">link</a></li>
+					<li><a href="#">link</a></li>
+					<li><a href="#">link</a></li>
+					<li><a href="#">link</a></li>
+				</ul>
+			</div>
+			<div id="test-muli-select">
+				<span>span</span>
+				<div>div</div>
+				<h1>h1</h1>
+			</div>
+			<div id="test-existing-element">
+				<a href="#">link</a>
+				<a href="#">link</a>
+				<a href="#">link</a>
+				<a href="#">link</a>
+				<a href="#">link</a>	
+			</div>
+			<!-- this element do not exits in the DOM
+			<div id="not-test-existing-element"></div>
+			-->
+		</div>
+		<h1>CD3.Behaviors:Core</h1>
+		<div id="testlog"></div>
+		<div id="scripts"></div>
+		<script type="text/javascript" src="behaviors_core.js"></script>
+	</body>
+</html>
