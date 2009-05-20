@@ -1,5 +1,5 @@
 /* 
- * ControlDepo 3 Widgets, version 0.1
+ * ControlDepo 3 Widgets
  * (c) Radoslav Stankov < Rstankov@gmail.com >
  */
 
