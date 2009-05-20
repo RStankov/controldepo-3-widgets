@@ -6,7 +6,7 @@
  *    Justin Palmer's EventSelectors (http://encytemedia.com/event-selectors)
  *    Dan Webb's LowPro (http://svn.danwebb.net/external/lowpro)
  */
- 
+
 CD3.Behaviors = (function(){
 	function run(args){
 		if (args.length == 1){

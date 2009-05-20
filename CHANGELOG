@@ -1,3 +1,4 @@
+20.05.2009 | removed CD3.Behaviors.when, CD3.Behaviors.assign, CD3.Behaviors.assignIf, and bind their functionality into CD3.Behaviors
 02.05.2009 | added CD3.Behaviors.ScrollTo
 27.04.2009 | removed CD3.loadImage
 24.04.2009 | added Event.delegate and sub methods
