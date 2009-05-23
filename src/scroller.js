@@ -45,11 +45,12 @@ CD3.Scroller = Class.create({
 		}.curry(this.startScroll.bind(this), this.stopScroll.bind(this)));
 		
 		// set handle
+		
 		var handle = this.handle = this.scroller.down('.' + options.styleSlider);
 		
 		this.sliderMaxHeight = handle.parentNode.offsetHeight - handle.offsetHeight;
 			
-		new Draggable(handle,{ 
+		if (Draggable) new Draggable(handle,{ 
 			constraint: 'vertical', 
 			snap: function(x, y){ return [x, this.validateTopPosition(y)]; }.bind(this),
 			change: this.traceHandlePosition.bind(this),
