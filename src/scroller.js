@@ -38,11 +38,11 @@ CD3.Scroller = Class.create({
 		this.scroller	= $(scroller);
 
 		// arrows
-		this.scroller.select('.' + options.styleArrow).each(function (el){
-			el.observe('mousedown',	this.startScroll.bind(this, el));
-			el.observe('mouseup',	this.stopScroll.bind(this));
-			el.observe('mouseout',	this.stopScroll.bind(this));
-		}.bind(this));
+		this.scroller.select('.' + options.styleArrow).each(function (start, stop, arrow){
+			arrow.observe('mousedown',	start);
+			arrow.observe('mouseup',	stop);
+			arrow.observe('mouseout',	stop);
+		}.curry(this.startScroll.bind(this), this.stopScroll.bind(this)));
 		
 		// set handle
 		var handle = this.handle = this.scroller.down('.' + options.styleSlider);
@@ -65,9 +65,11 @@ CD3.Scroller = Class.create({
 		// check if needed	
 		this.checkIfneeded();
 	},
-	startScroll: function (el) {
+	startScroll: function (e) {
 		this.stopScroll();
-		this.interval = setInterval(function (dir) { this.scrollBy(dir); }.bind(this, el.hasClassName(this.options.styleMoveUp) ? -1 : 1), 3);
+		this.interval = setInterval(function(dir) {
+			this.scrollBy(dir);
+		}.bind(this, e.findElement('.' + this.options.styleArrow).hasClassName(this.options.styleMoveUp) ? -1 : 1), 3);
 	},
 	stopScroll: function () {
 		clearInterval(this.interval);
