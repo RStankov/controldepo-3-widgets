@@ -98,6 +98,7 @@ CD3.Scroller = Class.create({
 			top		 = this.getScrollPosition(),
 			height	 = this.handle.getHeight();
 
+		// check to see we are no clicking the handle
 		if (clickedY < top || (top+height) < clickedY)
 			new Effect.Morph(this.handle, {
 				style:		 	{ top : this.validateTopPosition(clickedY) + 'px'},
