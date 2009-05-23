@@ -14,9 +14,13 @@ task :dist do
   sources = if ENV['components'].nil?
     FileList['src/**/*.js']
   else
-    ENV['components'].split(' ').inject [] do |memo, component|
+    ENV['components'].split(',').inject [] do |memo, component|
       memo << "src/#{component}.js"
     end
+  end
+  
+  if ENV['no_prototype'].nil?
+    sources.unshift 'vendor/prototype.js', 'vendor/effects.js'
   end
   
   secretary = Sprockets::Secretary.new( :source_files => sources )
