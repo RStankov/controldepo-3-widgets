@@ -24,7 +24,7 @@ Event.wheel = function(element, callback){
 CD3.Scroller = Class.create({
 	initialize: function (container, scroller, options){
 		// options
-		this.options = options = Object.extend( {
+		options = Object.extend( {
 			scrollSpeed:	1,
 			scrollStep:		1,
 			styleArrow:		'arrow',
@@ -46,6 +46,11 @@ CD3.Scroller = Class.create({
 			arrow.observe('mouseout',	stop);
 		}.curry(this.startScroll.bind(this), this.stopScroll.bind(this)));
 		
+		this.scroller.observe('mousedown', function(e){
+			var arrow = e.findElement('.' + options.styleArrow);
+			if (arrow) this.startScroll(arrow.hasClassName(options.styleMoveUp) ? -1 : 1);
+		}.bind(this));
+		
 		// handle
 		if (options.drag) new Draggable(this.handle,{ 
 			constraint:	'vertical', 
@@ -65,8 +70,7 @@ CD3.Scroller = Class.create({
 		// check if needed	
 		this.checkIfneeded();
 	},
-	startScroll: function (e){
-		var dir = e.findElement('.' + this.options.styleArrow).hasClassName(this.options.styleMoveUp) ? -1 : 1;
+	startScroll: function (dir){
 		this.interval = setInterval(this.scrollBy.bind(this, dir), 3);
 	},
 	stopScroll: function (){
