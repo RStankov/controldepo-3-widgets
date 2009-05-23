@@ -24,9 +24,7 @@ Event.wheel = function(element, callback){
 CD3.Scroller = Class.create({
 	initialize: function(container, scroller, options){
 		// options
-		options = Object.extend( {
-			scrollSpeed:	1,
-			scrollStep:		1,
+		options = Object.extend({
 			styleArrow:		'arrow',
 			styleMoveUp:	'moveup',
 			styleMoveDown:	'movedown',
