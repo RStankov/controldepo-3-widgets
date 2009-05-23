@@ -40,10 +40,10 @@ CD3.Scroller = Class.create({
 		this.handle		= this.scroller.down('.' + options.styleSlider)
 
 		// arrows
-		this.scroller.select('.' + options.styleArrow).each(function(start, stop, arrow){
-			arrow.observe('mouseup',	stop);
-			arrow.observe('mouseout',	stop);
-		}.curry(this.startScroll.bind(this), this.stopScroll.bind(this)));
+		this.scroller.select('.' + options.styleArrow).each(function(stop, arrow){
+			arrow.observe('mouseup',  stop);
+			arrow.observe('mouseout', stop);
+		}.curry(this.stopScroll.bind(this)));
 		
 		this.scroller.observe('mousedown', function(e){
 			var arrow = e.findElement('.' + options.styleArrow);
