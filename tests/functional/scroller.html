@@ -44,6 +44,9 @@
 	</head>
 	<body style="padding: 20px;">
 		<input type="button" value="+ 30 lines" />
+		<input type="button" value="0 speed" />
+		<input type="button" value="1 speed" />
+		<input type="button" value="6 speed" />
 		
 		<div id="content"></div>
 				
@@ -67,14 +70,24 @@
 			
 			(2).times(add_content);
 			
-			$$('input[type=button]').first().observe('click', add_content);
-			
-			CD3.Scroller.createIfNeeded('content', 'scrolling', {
+			var scroller = CD3.Scroller.createIfNeeded('content', 'scrolling', {
 				styleArrow:		'arrow',
 				styleMoveUp:	'uparrow',
 				styleMoveDown:	'downarrow',
 				styleSlider:	'scroll'
 			});
+			
+			scroller.setSpeed = function(speed){
+				this.speed = speed;
+			}
+			
+			var buttons = $$('input[type=button]');
+			
+			buttons[0].observe('click', add_content);
+			buttons[1].observe('click', scroller.setSpeed.bind(scroller, 0));
+			buttons[2].observe('click', scroller.setSpeed.bind(scroller, 1));
+			buttons[3].observe('click', scroller.setSpeed.bind(scroller, 6));
+			
 		</script>
 	</body>
 </html>

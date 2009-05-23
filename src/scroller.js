@@ -70,14 +70,14 @@ CD3.Scroller = Class.create({
 		Event.wheel(this.container, this.traceMouseWheel.bind(this));
 	},
 	startScroll: function(value){
-		this.interval = setInterval(this.scrollBy.bind(this, value), 3 * this.speed);
+		this.interval = setInterval(this.scrollBy.bind(this, value), 3);
 	},
 	stopScroll: function(){
 		clearInterval(this.interval);
 		this.interval = null;
 	},
 	scrollBy: function(dir){
-		this.handle.style.top = this.validateTopPosition( this.getScrollPosition() + dir ) + 'px';
+		this.handle.style.top = this.validateTopPosition( this.getScrollPosition() + dir * this.speed ) + 'px';
 		this.traceHandlePosition();
 	},
 	setHandlePosition: function(){
