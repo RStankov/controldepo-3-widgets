@@ -53,8 +53,7 @@ CD3.Scroller = Class.create({
 		if (Draggable) new Draggable(handle,{ 
 			constraint:	'vertical', 
 			snap:		function(x, y){ return [x, this.validateTopPosition(y)]; }.bind(this),
-			change:		this.traceHandlePosition.bind(this),
-			onStart:	this.stopScroll.bind(this)
+			change:		this.traceHandlePosition.bind(this)
 		});
 
 		// trackpath
@@ -67,42 +66,36 @@ CD3.Scroller = Class.create({
 		this.checkIfneeded();
 	},
 	startScroll: function (e){
-		this.stopScroll();
-		this.interval = setInterval(function(dir){
-			this.scrollBy(dir);
-		}.bind(this, e.findElement('.' + this.options.styleArrow).hasClassName(this.options.styleMoveUp) ? -1 : 1), 3);
+		var dir = e.findElement('.' + this.options.styleArrow).hasClassName(this.options.styleMoveUp) ? -1 : 1;
+		this.interval = setInterval(this.scrollBy.bind(this, dir), 3);
 	},
 	stopScroll: function (){
 		clearInterval(this.interval);
 		this.interval = null;
 	},
 	scrollBy: function (dir){
-		this.handle.style.top	= this.validateTopPosition( (parseInt(this.handle.style.top) || 0) + dir ) + 'px';
+		this.handle.style.top = this.validateTopPosition( this.getScrollPosition() + dir ) + 'px';
 		this.traceHandlePosition();
 	},
 	setHandlePosition: function(){
-		var container			= this.container;
-		this.handle.style.top	= (this.sliderMaxHeight * (container.scrollTop / (container.scrollHeight - container.offsetHeight))) + 'px';
+		this.handle.style.top = (this.sliderMaxHeight * (this.container.scrollTop / this.getVisibleHeight())) + 'px';
 	},
 	validateTopPosition: function(y){
-		if (y <= 0) return 0;
-		if (y >= this.sliderMaxHeight) return this.sliderMaxHeight;
+		if (y <= 0)						return 0;
+		if (y >= this.sliderMaxHeight)	return this.sliderMaxHeight;
 		
 		return y;
 	},
 	traceHandlePosition: function (){
-		var scroll		= parseInt(this.handle.style.top) || 0.
-			container	= this.container;
-		
-		container.scrollTop = (container.scrollHeight - container.offsetHeight) * (scroll/this.sliderMaxHeight);
+		this.container.scrollTop = this.getVisibleHeight() * (this.getScrollPosition() / this.sliderMaxHeight);
 	},
 	traceMouseWheel: function(delta){
 		if (delta != 0) this.scrollBy(delta > 0 ? -15 : 15);			
 	},
 	traceSliderClick: function(e){
 		var clickedY = e.pointerY()  - this.trackPosition[1],
-			top		 = parseInt(this.handle.style.top) || 0,
-			height	= this.handle.getHeight();
+			top		 = this.getScrollPosition(),
+			height	 = this.handle.getHeight();
 
 		if (clickedY < top || (top+height) < clickedY)
 			new Effect.Morph(this.handle, {
@@ -111,6 +104,12 @@ CD3.Scroller = Class.create({
 				afterUpdate:	this.traceHandlePosition.bind(this),
 				queue:			{scope: 'cd3:scroller', limit:1}
 			});
+	},
+	getScrollPosition: function(){
+		return parseInt(this.handle.style.top) || 0;
+	},
+	getVisibleHeight: function(){
+		return this.container.scrollHeight - this.container.offsetHeight;
 	},
 	checkIfneeded: function(){
 		this.scroller.style.display = this.container.scrollHeight <= this.container.offsetHeight ? 'none' : null;
