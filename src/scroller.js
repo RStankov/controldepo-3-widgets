@@ -30,7 +30,8 @@ CD3.Scroller = Class.create({
 			styleArrow:		'arrow',
 			styleMoveUp:	'moveup',
 			styleMoveDown:	'movedown',
-			styleSlider:	'slider'
+			styleSlider:	'slider',
+			drag:           true
 		}, options || {});					
 		
 		// base elements
@@ -46,7 +47,7 @@ CD3.Scroller = Class.create({
 		}.curry(this.startScroll.bind(this), this.stopScroll.bind(this)));
 		
 		// handle
-		if (Draggable) new Draggable(this.handle,{ 
+		if (options.drag) new Draggable(this.handle,{ 
 			constraint:	'vertical', 
 			snap:		function(x, y){ return [x, this.validateTopPosition(y)]; }.bind(this),
 			change:		this.traceHandlePosition.bind(this)
