@@ -24,7 +24,7 @@ Event.wheel = function(element, callback){
 CD3.Scroller = Class.create({
 	initialize: function (container, scroller, options){
 		// options
-		options = this.options = Object.extend( {
+		this.options = options = Object.extend( {
 			scrollSpeed:	1,
 			scrollStep:		1,
 			styleArrow:		'arrow',
@@ -51,10 +51,10 @@ CD3.Scroller = Class.create({
 		this.sliderMaxHeight = handle.parentNode.offsetHeight - handle.offsetHeight;
 			
 		if (Draggable) new Draggable(handle,{ 
-			constraint: 'vertical', 
-			snap: function(x, y){ return [x, this.validateTopPosition(y)]; }.bind(this),
-			change: this.traceHandlePosition.bind(this),
-			onStart: this.stopScroll.bind(this)
+			constraint:	'vertical', 
+			snap:		function(x, y){ return [x, this.validateTopPosition(y)]; }.bind(this),
+			change:		this.traceHandlePosition.bind(this),
+			onStart:	this.stopScroll.bind(this)
 		});
 
 		// trackpath
@@ -91,19 +91,18 @@ CD3.Scroller = Class.create({
 		return y;
 	},
 	traceHandlePosition: function (){
-		var scroll					= parseInt(this.handle.getStyle('top')) || 0;
-		var container				= this.container;
-		this.container.scrollTop	= (container.scrollHeight - container.offsetHeight) * (scroll/this.sliderMaxHeight);
+		var scroll		= parseInt(this.handle.style.top) || 0.
+			container	= this.container;
+		
+		container.scrollTop = (container.scrollHeight - container.offsetHeight) * (scroll/this.sliderMaxHeight);
 	},
 	traceMouseWheel: function(delta){
-		this.stopScroll();
-		if (delta != 0)
-			this.scrollBy((delta > 0 ? -1 : 1) * 15);			
+		if (delta != 0) this.scrollBy(delta > 0 ? -15 : 15);			
 	},
 	traceSliderClick: function(e){
 		var clickedY = e.pointerY()  - this.trackPosition[1],
-			top = parseInt(this.handle.style.top) || 0,
-			height = this.handle.getHeight();
+			top		 = parseInt(this.handle.style.top) || 0,
+			height	= this.handle.getHeight();
 
 		if (clickedY < top || (top+height) < clickedY)
 			new Effect.Morph(this.handle, {
@@ -114,6 +113,6 @@ CD3.Scroller = Class.create({
 			});
 	},
 	checkIfneeded: function(){
-		this.scroller[this.container.scrollHeight <= this.container.offsetHeight ? 'hide' : 'show']();
+		this.scroller.style.display = this.container.scrollHeight <= this.container.offsetHeight ? 'none' : null;
 	}
 });
