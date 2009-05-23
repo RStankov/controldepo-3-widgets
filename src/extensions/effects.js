@@ -35,16 +35,15 @@ Effect.Mutate = function(from, into){
 			if (e.options.replace){
 				from.remove();
 				from = null;
-				return;
+			} else {
+				from.relativize();
+				from.undoClipping();
+				from.style.width = null;
+				from.style.height = null;
+				from.hide();
 			}
-			
-			from.relativize();
-			from.undoClipping();
-			from.style.width = null;
-			from.style.height = null;
-			from.hide();
 		}
-	}, arguments[2] || {}));
+	}, arguments[2] || { replace: false }));
 };
 
 Effect.FadeBlind = function(element){
