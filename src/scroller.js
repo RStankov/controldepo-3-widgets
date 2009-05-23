@@ -29,10 +29,12 @@ CD3.Scroller = Class.create({
 			styleMoveUp:	'moveup',
 			styleMoveDown:	'movedown',
 			styleSlider:	'slider',
-			drag:           true
+			drag:           true,
+			speed:			1
 		}, options || {});					
 		
 		// base elements
+		this.speed		= options.speed;
 		this.container	= $(container);
 		this.scroller	= $(scroller);
 		this.handle		= this.scroller.down('.' + options.styleSlider);
@@ -68,7 +70,7 @@ CD3.Scroller = Class.create({
 		Event.wheel(this.container, this.traceMouseWheel.bind(this));
 	},
 	startScroll: function(value){
-		this.interval = setInterval(this.scrollBy.bind(this, value), 3);
+		this.interval = setInterval(this.scrollBy.bind(this, value), 3 * this.speed);
 	},
 	stopScroll: function(){
 		clearInterval(this.interval);
