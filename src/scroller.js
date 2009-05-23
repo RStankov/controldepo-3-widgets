@@ -1,7 +1,7 @@
 //= require "header"
 
-Event.wheel = function(element, callback) {
-	var __onwheel = function (event) {
+Event.wheel = function(element, callback){
+	var __onwheel = function (event){
 		var delta = 0;
 		if (!event)
 			event = window.event;
@@ -51,7 +51,7 @@ CD3.Scroller = Class.create({
 			
 		new Draggable(handle,{ 
 			constraint: 'vertical', 
-			snap: function(x, y) { return [x, this.validateTopPosition(y)]; }.bind(this),
+			snap: function(x, y){ return [x, this.validateTopPosition(y)]; }.bind(this),
 			change: this.traceHandlePosition.bind(this),
 			onStart: this.stopScroll.bind(this)
 		});
@@ -65,13 +65,13 @@ CD3.Scroller = Class.create({
 		// check if needed	
 		this.checkIfneeded();
 	},
-	startScroll: function (e) {
+	startScroll: function (e){
 		this.stopScroll();
-		this.interval = setInterval(function(dir) {
+		this.interval = setInterval(function(dir){
 			this.scrollBy(dir);
 		}.bind(this, e.findElement('.' + this.options.styleArrow).hasClassName(this.options.styleMoveUp) ? -1 : 1), 3);
 	},
-	stopScroll: function () {
+	stopScroll: function (){
 		clearInterval(this.interval);
 		this.interval = null;
 	},
@@ -79,11 +79,11 @@ CD3.Scroller = Class.create({
 		this.handle.style.top	= this.validateTopPosition( (parseInt(this.handle.style.top) || 0) + dir ) + 'px';
 		this.traceHandlePosition();
 	},
-	setHandlePosition: function() {
+	setHandlePosition: function(){
 		var container			= this.container;
 		this.handle.style.top	= (this.sliderMaxHeight * (container.scrollTop / (container.scrollHeight - container.offsetHeight))) + 'px';
 	},
-	validateTopPosition: function(y) {
+	validateTopPosition: function(y){
 		if (y <= 0) return 0;
 		if (y >= this.sliderMaxHeight) return this.sliderMaxHeight;
 		
