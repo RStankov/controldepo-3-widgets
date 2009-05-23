@@ -69,7 +69,7 @@
 			
 			$$('input[type=button]').first().observe('click', add_content);
 			
-			new CD3.Scroller('content', 'scrolling', {
+			CD3.Scroller.createIfNeeded('content', 'scrolling', {
 				styleArrow:		'arrow',
 				styleMoveUp:	'uparrow',
 				styleMoveDown:	'downarrow',

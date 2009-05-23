@@ -35,7 +35,10 @@ CD3.Scroller = Class.create({
 		// base elements
 		this.container	= $(container);
 		this.scroller	= $(scroller);
-		this.handle		= this.scroller.down('.' + options.styleSlider)
+		this.handle		= this.scroller.down('.' + options.styleSlider);
+		
+		// check if needed	
+		this.checkIfneeded();
 
 		// arrows
 		this.scroller.select('.' + options.styleArrow).each(function(stop, arrow){
@@ -63,9 +66,6 @@ CD3.Scroller = Class.create({
 					
 		// wheel
 		Event.wheel(this.container, this.traceMouseWheel.bind(this));
-				
-		// check if needed	
-		this.checkIfneeded();
 	},
 	startScroll: function(value){
 		this.interval = setInterval(this.scrollBy.bind(this, value), 3);
@@ -117,3 +117,13 @@ CD3.Scroller = Class.create({
 		this.scroller.style.display = this.container.scrollHeight <= this.container.offsetHeight ? 'none' : null;
 	}
 });
+CD3.Scroller.createIfNeeded = function(container, scroller, options){
+	container  = $(container);
+
+	if (container.scrollHeight <= container.offsetHeight){
+		$(scroller).hide();
+		return null;
+	}
+	
+	return new CD3.Scroller(container, scroller, options)
+}
