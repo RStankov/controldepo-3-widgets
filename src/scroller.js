@@ -109,7 +109,7 @@ CD3.Scroller = Class.create({
 				style:		 	{ top : this.validateTopPosition(clickedY) + 'px'},
 				duration:	 	0.5,
 				afterUpdate:	this.traceHandlePosition.bind(this),
-				queue:			{scope: 'scroller', limit:1}
+				queue:			{scope: 'cd3:scroller', limit:1}
 			});
 	},
 	checkIfneeded: function(){
