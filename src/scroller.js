@@ -36,6 +36,7 @@ CD3.Scroller = Class.create({
 		// base elements
 		this.container	= $(container);
 		this.scroller	= $(scroller);
+		this.handle		= this.scroller.down('.' + options.styleSlider)
 
 		// arrows
 		this.scroller.select('.' + options.styleArrow).each(function (start, stop, arrow){
@@ -44,20 +45,18 @@ CD3.Scroller = Class.create({
 			arrow.observe('mouseout',	stop);
 		}.curry(this.startScroll.bind(this), this.stopScroll.bind(this)));
 		
-		// set handle
-		
-		var handle = this.handle = this.scroller.down('.' + options.styleSlider);
-		
-		this.sliderMaxHeight = handle.parentNode.offsetHeight - handle.offsetHeight;
-			
-		if (Draggable) new Draggable(handle,{ 
+		// handle
+		if (Draggable) new Draggable(this.handle,{ 
 			constraint:	'vertical', 
 			snap:		function(x, y){ return [x, this.validateTopPosition(y)]; }.bind(this),
 			change:		this.traceHandlePosition.bind(this)
 		});
 
 		// trackpath
-		this.trackPosition = $(handle.parentNode).observe('click', this.traceSliderClick.bind(this)).cumulativeOffset();
+		var trackpath = $(this.handle.parentNode).observe('click', this.traceSliderClick.bind(this));
+		
+		this.trackpathPositionY	= trackpath.cumulativeOffset()[1];
+		this.sliderMaxHeight	= trackpath.getHeight() - this.handle.getHeight();
 					
 		// wheel
 		Event.wheel(this.container, this.traceMouseWheel.bind(this));
@@ -93,7 +92,7 @@ CD3.Scroller = Class.create({
 		if (delta != 0) this.scrollBy(delta > 0 ? -15 : 15);			
 	},
 	traceSliderClick: function(e){
-		var clickedY = e.pointerY()  - this.trackPosition[1],
+		var clickedY = e.pointerY()  - this.trackpathPositionY,
 			top		 = this.getScrollPosition(),
 			height	 = this.handle.getHeight();
 
