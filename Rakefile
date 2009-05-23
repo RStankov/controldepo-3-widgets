@@ -20,7 +20,7 @@ task :dist do
   end
   
   if ENV['no_prototype'].nil?
-    sources.unshift 'vendor/prototype.js', 'vendor/effects.js'
+    sources = sources.unshift('vendor/prototype.js', 'vendor/effects.js')
   end
   
   secretary = Sprockets::Secretary.new( :source_files => sources )
