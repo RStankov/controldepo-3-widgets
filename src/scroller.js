@@ -1,7 +1,7 @@
 //= require "header"
 
 Event.wheel = function(element, callback){
-	var __onwheel = function (event){
+	var __onwheel = function(event){
 		var delta = 0;
 		if (!event)
 			event = window.event;
@@ -22,7 +22,7 @@ Event.wheel = function(element, callback){
 };
 
 CD3.Scroller = Class.create({
-	initialize: function (container, scroller, options){
+	initialize: function(container, scroller, options){
 		// options
 		options = Object.extend( {
 			scrollSpeed:	1,
@@ -40,8 +40,7 @@ CD3.Scroller = Class.create({
 		this.handle		= this.scroller.down('.' + options.styleSlider)
 
 		// arrows
-		this.scroller.select('.' + options.styleArrow).each(function (start, stop, arrow){
-			arrow.observe('mousedown',	start);
+		this.scroller.select('.' + options.styleArrow).each(function(start, stop, arrow){
 			arrow.observe('mouseup',	stop);
 			arrow.observe('mouseout',	stop);
 		}.curry(this.startScroll.bind(this), this.stopScroll.bind(this)));
@@ -70,14 +69,14 @@ CD3.Scroller = Class.create({
 		// check if needed	
 		this.checkIfneeded();
 	},
-	startScroll: function (dir){
-		this.interval = setInterval(this.scrollBy.bind(this, dir), 3);
+	startScroll: function(value){
+		this.interval = setInterval(this.scrollBy.bind(this, value), 3);
 	},
-	stopScroll: function (){
+	stopScroll: function(){
 		clearInterval(this.interval);
 		this.interval = null;
 	},
-	scrollBy: function (dir){
+	scrollBy: function(dir){
 		this.handle.style.top = this.validateTopPosition( this.getScrollPosition() + dir ) + 'px';
 		this.traceHandlePosition();
 	},
@@ -90,7 +89,7 @@ CD3.Scroller = Class.create({
 		
 		return y;
 	},
-	traceHandlePosition: function (){
+	traceHandlePosition: function(){
 		this.container.scrollTop = this.getVisibleHeight() * (this.getScrollPosition() / this.sliderMaxHeight);
 	},
 	traceMouseWheel: function(delta){
