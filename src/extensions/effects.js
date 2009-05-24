@@ -4,32 +4,40 @@ Effect.Mutate = function(from, into){
 	
 	into = from.next();
 	
-	var style		= '',
-		fromWidth	= from.getWidth(),
-		fromHeight	= from.getHeight(),
-		intoWidth	= into.getWidth(),
-		intoHeight	= into.getHeight();
+	var style	= '',
+		options	= Object.extend({ replace: false, resize: true }, arguments[2] || {})
 	
-	if (fromWidth != intoWidth)		style += 'width: ' + intoWidth + 'px; ';
-	if (fromHeight != intoHeight)	style += 'height: ' + intoHeight + 'px; ';
+	if (options.resize){
+		var	fromWidth	= from.getWidth(),
+			fromHeight	= from.getHeight(),
+			intoWidth	= into.getWidth(),
+			intoHeight	= into.getHeight();
 	
+		if (fromWidth != intoWidth)		style += 'width: ' + intoWidth + 'px; ';
+		if (fromHeight != intoHeight)	style += 'height: ' + intoHeight + 'px; ';
+		
+		into.setStyle({width: fromWidth + 'px', height: fromHeight + 'px' });
+	}
+
 	return new Effect.Parallel([
 		new Effect.Morph(from, {sync: true, style: style + 'opacity: 0.0;'}),
 		new Effect.Morph(into, {sync: true, style: style + 'opacity: 1.0;'})
-	], Object.extend({
+	], Object.extend(options, {
 		beforeStartInternal: function(){
 			from.absolutize();
 			from.makeClipping();
 			
-			into.setStyle({width: fromWidth + 'px', height: fromHeight + 'px' });
 			into.makeClipping();
 			into.setOpacity(0.0);
 			into.show();
 		},
 		afterFinishInternal: function(e){
+			if (e.options.resize){
+				into.style.width = into.style.height = null;
+				from.style.width = from.style.height = null;
+			}
+			
 			into.undoClipping();
-			into.style.width = null;
-			into.style.height = null;
 			into = null;
 			
 			if (e.options.replace){
@@ -38,12 +46,10 @@ Effect.Mutate = function(from, into){
 			} else {
 				from.relativize();
 				from.undoClipping();
-				from.style.width = null;
-				from.style.height = null;
 				from.hide();
 			}
 		}
-	}, arguments[2] || { replace: false }));
+	}));
 };
 
 Effect.FadeBlind = function(element){
