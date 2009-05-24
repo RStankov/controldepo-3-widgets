@@ -1,4 +1,3 @@
-//= require "../header"
 //= require "../behaviors"
 
 // Usage: 

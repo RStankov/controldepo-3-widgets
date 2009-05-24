@@ -1,4 +1,4 @@
-//= require "header"
+//= require "controldepo"
 //= require "extensions/event.js"
 
 CD3.Accordion = Class.create({

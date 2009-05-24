@@ -1,4 +1,4 @@
-//= require "header"
+//= require "controldepo"
 
 CD3.Slider = Class.create({
 	initialize: function(container, options){

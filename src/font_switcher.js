@@ -1,4 +1,4 @@
-//= require "header"
+//= require "controldepo"
 
 CD3.FontSwitcher = Class.create({
 	initialize: function(panel, element, options){

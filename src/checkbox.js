@@ -1,4 +1,4 @@
-//= require "header"
+//= require "controldepo"
 
 CD3.Checkbox = Class.create({
 	initialize: function(checkbox){

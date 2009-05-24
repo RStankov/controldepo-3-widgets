@@ -1,4 +1,4 @@
-//= require "header"
+//= require "controldepo"
 
 CD3.AdjustableTextarea = Class.create({
 	initialize: function(textarea){

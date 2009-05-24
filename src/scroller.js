@@ -1,4 +1,4 @@
-//= require "header"
+//= require "controldepo"
 
 Event.wheel = function(element, callback){
 	var __onwheel = function(event){

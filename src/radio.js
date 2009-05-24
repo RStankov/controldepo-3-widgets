@@ -1,4 +1,4 @@
-//= require "header"
+//= require "controldepo"
 
 CD3.Radio = Class.create({
 	initialize: function(radio){

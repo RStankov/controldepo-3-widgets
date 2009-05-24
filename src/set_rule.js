@@ -1,4 +1,4 @@
-//= require "header"
+//= require "controldepo"
 
 CD3.setRule = function(selector, styles){
 	var i, x, sheet, rules;
