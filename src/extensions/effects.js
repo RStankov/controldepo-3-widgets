@@ -8,15 +8,13 @@ Effect.Mutate = function(from, into){
 		options	= Object.extend({ replace: false, resize: true }, arguments[2] || {})
 	
 	if (options.resize){
-		var	fromWidth	= from.getWidth(),
-			fromHeight	= from.getHeight(),
-			intoWidth	= into.getWidth(),
-			intoHeight	= into.getHeight();
+		var	fromDim = from.getDimensions(),
+			intoDim = into.getDimensions();
 	
-		if (fromWidth != intoWidth)		style += 'width: ' + intoWidth + 'px; ';
-		if (fromHeight != intoHeight)	style += 'height: ' + intoHeight + 'px; ';
+		if (fromDim.width  != intoDim.width)  style += 'width: '  + intoDim.width  + 'px; ';
+		if (fromDim.height != intoDim.height) style += 'height: ' + intoDim.height + 'px; ';
 		
-		into.setStyle({width: fromWidth + 'px', height: fromHeight + 'px' });
+		into.setStyle({width: fromDim.width + 'px', height: fromDim.height + 'px' });
 	}
 
 	return new Effect.Parallel([
