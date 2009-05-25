@@ -2,7 +2,7 @@
 //= require "extensions/event.js"
 
 CD3.FontSwitcher = Class.create({
-	initialize: function(panel, element, options){
+	initialize: function(panel, content, options){
 		options = Object.extend({
 			className:	'text-size-',
 			max: 		4,
@@ -14,28 +14,28 @@ CD3.FontSwitcher = Class.create({
 		this.size		= 0;
 		this.maxSize	= options.max;
 		this.className	= options.className;
-		this.element	= $(element);
+		this.content	= $(content);
 		this.panel		= $(panel);
 		
 		if (options.plus)	this.panel.delegate(options.plus,  'click', this.change.bind(this,  1));
 		if (options.reset)	this.panel.delegate(options.reset, 'click', this.change.bind(this,  0));
 		if (options.minus)	this.panel.delegate(options.minus, 'click', this.change.bind(this, -1));
 		
-		this.element.select('font[size]').each(function(font){
+		this.content.select('font[size]').each(function(font){
 			font._size = parseInt(font.getAttribute('size'));
 		});
 	},
 	change: function(value){
-		this.element.removeClassName(this.className + this.size);
+		this.content.removeClassName(this.className + this.size);
 		
 		var size = value == 0 ? 0 : this.size + value;
 		
 		this.size = size < 0 ? 0 : ( size > this.maxSize ? this.maxSize : size );
 		
-		if (this.size != 0) this.element.addClassName(this.className + this.size);
+		if (this.size != 0) this.content.addClassName(this.className + this.size);
 		
 		size = this.size;
-		this.element.select('font[size]').each(function(font){
+		this.content.select('font[size]').each(function(font){
 			font.setAttribute('size', font._size + size);
 		});
 	}
