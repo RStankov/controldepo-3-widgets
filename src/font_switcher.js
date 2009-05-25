@@ -25,16 +25,19 @@ CD3.FontSwitcher = Class.create({
 			font._size = parseInt(font.getAttribute('size'));
 		});
 	},
-	change: function(value){
-		this.content.removeClassName(this.className + this.size);
+	change: function(size){
+		size = size == 0 ? 0 : this.size + size, 0;
+		size = size <  0 ? 0 : (size > this.maxSize ? this.maxSize : size);
 		
-		var size = value == 0 ? 0 : this.size + value;
+		if (this.size != 0){
+			this.content.removeClassName(this.className + this.size);
+		}
+			
+		if (size != 0){
+			this.content.addClassName(this.className + size);
+		}
 		
-		this.size = size < 0 ? 0 : ( size > this.maxSize ? this.maxSize : size );
-		
-		if (this.size != 0) this.content.addClassName(this.className + this.size);
-		
-		size = this.size;
+		this.size = size;
 		this.content.select('font[size]').each(function(font){
 			font.setAttribute('size', font._size + size);
 		});
