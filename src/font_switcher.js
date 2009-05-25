@@ -1,4 +1,5 @@
 //= require "controldepo"
+//= require "extensions/event.js"
 
 CD3.FontSwitcher = Class.create({
 	initialize: function(panel, element, options){
@@ -10,26 +11,19 @@ CD3.FontSwitcher = Class.create({
 			minus:		'a.minus'
 		}, options || {});
 		
-		var buttons = {};
-		
-		if (options.plus)	buttons[options.plus]	= this.change.bind(this, 1);
-		if (options.reset)	buttons[options.reset]	= this.change.bind(this, 0);
-		if (options.minus)	buttons[options.minus]	= this.change.bind(this, -1);
-	
 		this.size		= 0;
-		this.buttons	= buttons;
 		this.maxsize	= options.max;
 		this.classname	= options.classname;
 		this.element	= $(element);
-		this.panel		= $(panel).observe('click', this.onClick.bind(this));
+		this.panel		= $(panel);
+		
+		if (options.plus)	this.panel.delegate(options.plus,  'click', this.change.bind(this,  1));
+		if (options.reset)	this.panel.delegate(options.reset, 'click', this.change.bind(this,  0));
+		if (options.minus)	this.panel.delegate(options.minus, 'click', this.change.bind(this, -1));
+		
 		this.element.select('font[size]').each(function(font){
 			font._size = parseInt(font.getAttribute('size'));
 		});
-	},
-	onClick: function(e){
-		for(var b in this.buttons)
-			if (e.findElement(b))
-				return this.buttons[b]();
 	},
 	change: function(value){
 		this.element.removeClassName(this.classname + this.size);
