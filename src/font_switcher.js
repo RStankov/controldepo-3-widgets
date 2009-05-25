@@ -3,6 +3,7 @@
 
 CD3.FontSwitcher = Class.create({
 	initialize: function(panel, content, options){
+		panel	= $(panel);
 		options = Object.extend({
 			className:	'text-size-',
 			max: 		4,
@@ -11,15 +12,14 @@ CD3.FontSwitcher = Class.create({
 			minus:		'a.minus'
 		}, options || {});
 		
+		if (options.plus)	panel.delegate(options.plus,  'click', this.change.bind(this,  1));
+		if (options.reset)	panel.delegate(options.reset, 'click', this.change.bind(this,  0));
+		if (options.minus)	panel.delegate(options.minus, 'click', this.change.bind(this, -1));
+		
 		this.size		= 0;
 		this.maxSize	= options.max;
 		this.className	= options.className;
 		this.content	= $(content);
-		this.panel		= $(panel);
-		
-		if (options.plus)	this.panel.delegate(options.plus,  'click', this.change.bind(this,  1));
-		if (options.reset)	this.panel.delegate(options.reset, 'click', this.change.bind(this,  0));
-		if (options.minus)	this.panel.delegate(options.minus, 'click', this.change.bind(this, -1));
 		
 		this.content.select('font[size]').each(function(font){
 			font._size = parseInt(font.getAttribute('size'));
