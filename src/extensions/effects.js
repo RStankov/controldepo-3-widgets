@@ -1,8 +1,13 @@
 Effect.Mutate = function(from, into){
 	from = $(from);
+	from.makeClipping();
+	from.absolutize();
 	from.insert({after: $(into) || into});
 	
 	into = from.next();
+	into.makeClipping();
+	into.setOpacity(0.0);
+	into.show();
 	
 	var style	= '',
 		options	= Object.extend({ replace: false, resize: true }, arguments[2] || {})
@@ -21,20 +26,7 @@ Effect.Mutate = function(from, into){
 		new Effect.Morph(from, {sync: true, style: style + 'opacity: 0.0;'}),
 		new Effect.Morph(into, {sync: true, style: style + 'opacity: 1.0;'})
 	], Object.extend(options, {
-		beforeStartInternal: function(){
-			from.absolutize();
-			from.makeClipping();
-			
-			into.makeClipping();
-			into.setOpacity(0.0);
-			into.show();
-		},
 		afterFinishInternal: function(e){
-			if (e.options.resize){
-				into.style.width = into.style.height = null;
-				from.style.width = from.style.height = null;
-			}
-			
 			into.undoClipping();
 			into = null;
 			
