@@ -116,7 +116,7 @@ CD3.Scroller = Class.create({
 		return this.container.scrollHeight - this.container.offsetHeight;
 	},
 	checkIfneeded: function(){
-		this.scroller.style.display = this.container.scrollHeight <= this.container.offsetHeight ? 'none' : null;
+		this.scroller[this.container.scrollHeight <= this.container.offsetHeight ? 'hide' : 'show']();
 	}
 });
 CD3.Scroller.createIfNeeded = function(container, scroller, options){
