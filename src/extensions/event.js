@@ -1,7 +1,7 @@
 (function(){
   function delegateHandler(e){
     var element = e.element(), elements = [element].concat(element.ancestors());
-    ((this.retrieve('prototype_delegates') || $H()).get(e.eventName || e.type) || []).each(function(pair){
+    ((Element.retrieve(this, 'prototype_delegates') || $H()).get(e.eventName || e.type) || []).each(function(pair){
       if (element = Selector.matchElements(elements, pair.key)[0])
         pair.value.invoke('call', element, e); 
     });
@@ -10,10 +10,10 @@
   function delegate(element, selector, event, handler){
     element = $(element);
         
-    var store = element.retrieve('prototype_delegates');
+    var store = Element.retrieve(element, 'prototype_delegates');
     
     if (Object.isUndefined(store)){
-      element.store('prototype_delegates', store = $H());
+      Element.store(element, 'prototype_delegates', store = $H());
     }
     
     var eventStore = store.get(event);
@@ -44,7 +44,7 @@
   function stopDelegating(element, selector, event, handler){
     element = $(element);
 
-    var store = element.retrieve('prototype_delegates');
+    var store = Element.retrieve(element, 'prototype_delegates');
     if (Object.isUndefined(store)) return;
 
     switch(arguments.length){
@@ -73,8 +73,8 @@
 
   // expose
   document.delegate = delegate.methodize();
-  document.stopDelegate = stopDelegating.methodize();
+  document.stopDelegating = stopDelegating.methodize();
   Event.delegate = delegate;
-  Event.stopDelegate = stopDelegating;
+  Event.stopDelegating = stopDelegating;
   Element.addMethods({ delegate: delegate, stopDelegating: stopDelegating });
 })();
