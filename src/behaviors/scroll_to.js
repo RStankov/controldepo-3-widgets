@@ -9,4 +9,4 @@ CD3.Behaviors.ScrollTo = {
 		var href = this.getAttribute('href');
 		Effect.ScrollTo(href.substr(href.indexOf('#') + 1), { duration: 0.5 });
 	}
-}
+};
