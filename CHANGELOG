@@ -1,3 +1,4 @@
+13.07.2009 | added $('link').request metod
 09.07.2009 | added CD3.Behaviors.Stop
 20.05.2009 | removed CD3.Behaviors.when, CD3.Behaviors.assign, CD3.Behaviors.assignIf, and bind their functionality into CD3.Behaviors [rstankov]
 02.05.2009 | added CD3.Behaviors.ScrollTo [rstankov]

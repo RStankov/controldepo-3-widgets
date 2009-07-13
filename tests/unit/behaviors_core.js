@@ -28,7 +28,6 @@ Object.extend(Test.Unit.Testcase.prototype, {
 	}
 });
 
-
 document.observe('dom:loaded', function(){
 	// shortcut for CD3.Behaviors
 	var $b = CD3.Behaviors;

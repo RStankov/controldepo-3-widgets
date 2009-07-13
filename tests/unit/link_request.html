@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>$('link').request()</title>
+		<link rel="stylesheet" href="../test.css" type="text/css" />
+		<script type="text/javascript" src="../../vendor/prototype.js"></script>
+		<script type="text/javascript" src="../../vendor/effects.js"></script>
+		<script type="text/javascript" src="../../vendor/unittest.js"></script>
+		<script type="text/javascript" src="../../src/controldepo.js"></script>
+		<script type="text/javascript" src="../../src/extensions/element.js"></script>
+		<script type="text/javascript" src="link_request.js"></script>
+	</head>
+	<body>
+		<h1>$('link').request()</h1>
+		<div id="testlog"></div>
+		<div id="scripts"></div>
+		<div id="test_links" style="display: none;">
+			<a href="normal_url.html" id="normal_link">normal_link</a>
+			<a href="normal_url.html" id="link_method_post" data-method="post">post</a>
+			<a href="normal_url.html" id="link_method_put" data-method="put">put</a>
+			<a href="normal_url.html" id="link_method_delete" data-method="delete">delete</a>
+			<a href="normal_url.html" id="link_confirm" data-confirm="Are you sure?">confirm</a>
+			<a href="normal_url.html" id="link_update" data-update="update_me">updater</a>
+			<div id="update_me"></div>
+		</div>
+	</body>
+</html>
