@@ -9,7 +9,8 @@ CD3.FontSwitcher = Class.create({
 			max: 		4,
 			reset:		'a.reset',
 			plus:		'a.plus',
-			minus:		'a.minus'
+			minus:		'a.minus',
+			callback:	false
 		}, options || {});
 		
 		if (options.plus)	panel.delegate(options.plus,  'click', this.change.bind(this,  1));
@@ -20,12 +21,15 @@ CD3.FontSwitcher = Class.create({
 		this.maxSize	= options.max;
 		this.className	= options.className;
 		this.content	= $(content);
+		this.callback	= options.callback;
 		
 		this.content.select('font[size]').each(function(font){
 			font._size = parseInt(font.getAttribute('size'));
 		});
 	},
-	change: function(size){
+	change: function(size, e){
+		if (e && 'stop' in e) e.stop();
+		
 		size = size == 0 ? 0 : this.size + size, 0;
 		size = size <  0 ? 0 : (size > this.maxSize ? this.maxSize : size);
 		
@@ -41,5 +45,7 @@ CD3.FontSwitcher = Class.create({
 		this.content.select('font[size]').each(function(font){
 			font.setAttribute('size', font._size + size);
 		});
+		
+		if (this.callback) this.callback.call(this);
 	}
 });
