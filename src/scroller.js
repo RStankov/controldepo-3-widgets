@@ -2,6 +2,7 @@
 
 Event.wheel = function(element, callback){
 	var __onwheel = function(event){
+		Event.stop(event);
 		var delta = 0;
 		if (!event)
 			event = window.event;
@@ -12,7 +13,6 @@ Event.wheel = function(element, callback){
 			delta = -event.detail/3;
 		delta = Math.round(delta, event); //Safari Round
 		callback(delta);
-		event.stop();
 	}
 
 	if(window.addEventListener)	// FF/DOM-Compliant Browsers
@@ -127,5 +127,5 @@ CD3.Scroller.createIfNeeded = function(container, scroller, options){
 		return null;
 	}
 	
-	return new CD3.Scroller(container, scroller, options)
+	return new CD3.Scroller(container, scroller, options);
 }
