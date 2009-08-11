@@ -117,7 +117,7 @@ document.observe('dom:loaded', function(){
 	   			'#test-event-selector a:click': $h('#test-event-selector a:click', 'click', 1),
 	   			'#test-event-selector a.last': {
 	   				mouseover: $h('#test-event-selector a.last', 'mouseover', 2),
-	   				mouseout:  $h('#test-event-selector a.last', 'mouseout', 3),
+	   				mouseout:  $h('#test-event-selector a.last', 'mouseout', 3)
 	   			}
 	   		});
    		
@@ -126,6 +126,26 @@ document.observe('dom:loaded', function(){
    		
 	   		this.assertCount($$('#test-event-selector a:click').length * 4 + $$('#test-event-selector a.last').length * 4 * 2);
 	   	},
+		testEventSelectorWithCustomEvents: function(){
+	   		var assert = this.assert.bind(this);
+			
+	   		// mock Event.observe
+	   		var eventObserve = Event.observe;
+	
+			Event.observe = function(element, eventName, handler){
+				assert(eventName, 'custom:event');
+			};
+	
+			$b({
+				'#test-event-selector:custom:event': 	Prototype.emptyFunction,
+				'#not-existing-element:custom:event':	Prototype.emptyFunction
+			});
+			
+	   		// unmock Event.observe
+	   		Event.observe = eventObserve;
+			
+			this.assertCount(1);
+		},
 	   	testEventDelegation: function(){
 	   		var assert = this.assert.bind(this);
    	

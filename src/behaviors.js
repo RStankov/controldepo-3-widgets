@@ -20,7 +20,7 @@ CD3.Behaviors = (function(){
 	
 	function assign(root, rules){
 		for (var selector in rules){
-			var observer = rules[selector], parts = selector.split(/:(?=[a-z]+$)/), css = parts.shift(), event = parts.join('');
+			var observer = rules[selector], parts = selector.split(':'), css = parts.shift(), event = parts.join(':');
 			Selector.findChildElements(root, [css]).each(function(element){
 				if (event){
 					observe(element, event, observer);
