@@ -7,9 +7,9 @@ CD3.FontSwitcher = Class.create({
 		options = Object.extend({
 			className:	'text-size-',
 			max: 		4,
-			reset:		'a.reset',
-			plus:		'a.plus',
-			minus:		'a.minus',
+			reset:		'.reset',
+			plus:		'.plus',
+			minus:		'.minus',
 			callback:	false
 		}, options || {});
 		
