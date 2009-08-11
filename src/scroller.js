@@ -1,4 +1,5 @@
 //= require "controldepo"
+//= require <vendor/dragdrop>
 
 Event.wheel = function(element, callback){
 	var __onwheel = function(event){
