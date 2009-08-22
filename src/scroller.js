@@ -1,26 +1,6 @@
 //= require "controldepo"
+//= require "extensions/events/mouse_wheel"
 //= require <vendor/dragdrop>
-
-Event.wheel = function(element, callback){
-	var __onwheel = function(event){
-		Event.stop(event);
-		var delta = 0;
-		if (!event)
-			event = window.event;
-		if (event.wheelDelta){
-			delta = event.wheelDelta/120; 
-			if (window.opera) delta = -delta;
-		} else if (event.detail)
-			delta = -event.detail/3;
-		delta = Math.round(delta, event); //Safari Round
-		callback(delta);
-	}
-
-	if(window.addEventListener)	// FF/DOM-Compliant Browsers
-		$(element).addEventListener('DOMMouseScroll', __onwheel, false);
-	else if(document.attachEvent) // IE
-		$(element).observe('mousewheel', __onwheel);
-};
 
 CD3.Scroller = Class.create({
 	initialize: function(container, scroller, options){
@@ -65,7 +45,7 @@ CD3.Scroller = Class.create({
 		this.sliderMaxHeight	= trackpath.getHeight() - this.handle.getHeight();
 					
 		// wheel
-		Event.wheel(this.container, this.traceMouseWheel.bind(this));
+		this.container.observe('mouse:wheel', this.traceMouseWheel.bind(this)
 		
 		// check if needed	
 		this.checkIfneeded();
@@ -93,8 +73,8 @@ CD3.Scroller = Class.create({
 	traceHandlePosition: function(){
 		this.container.scrollTop = this.getVisibleHeight() * (this.getScrollPosition() / this.sliderMaxHeight);
 	},
-	traceMouseWheel: function(delta){
-		if (delta != 0) this.scrollBy(delta > 0 ? -15 : 15);			
+	traceMouseWheel: function(e){
+		this.scrollBy(e.memo.delta > 0 ? -15 : 15);			
 	},
 	traceSliderClick: function(e){
 		var clickedY = e.pointerY()  - this.trackpathPositionY,
