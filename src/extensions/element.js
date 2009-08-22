@@ -3,6 +3,18 @@ Element.addMethods({
 	// exmaple: $('test_12').extractId() -> 12
 	extractId:  function(element){
 		return (element.id && element.id.match(/\w+_(\d+)/)[1]) || 0;
+	},
+	unsetStorage: function(element){
+		if (!(element = $(element))) return;
+  
+		if (element === window){
+			delete(Element.Storage[0]);
+		} else if (typeof element._prototypeUID !== "undefined") {
+			var uid = element._prototypeUID[0];
+			if (uid in Element.Storage)
+				delete(Element.Storage[uid]);
+		}
+		return element;
 	}
 });
 
