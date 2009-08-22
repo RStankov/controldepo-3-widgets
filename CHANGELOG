@@ -1,3 +1,4 @@
+23.09.2009 | added Andrew Dupont mouse:wheel custom event
 23.09.2009 | added focus:in / focus:out custom events
 28.08.2009 | added callback option to CD3.FontSwitcher
 13.07.2009 | added $('link').request metod
