@@ -8,8 +8,6 @@
 var CD3 = {};
 
 //= require "behaviors"
+//= require "utils"
 //= require "widgets"
 //= require "form"
-
-//= require "image_loader"
-//= require "set_rule"

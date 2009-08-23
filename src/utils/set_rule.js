@@ -1,4 +1,4 @@
-CD3.setRule = function(selector, styles){
+CD3.Util.setRule = function(selector, styles){
 	var i, x, sheet, rules;
 
 	for (x = document.styleSheets.length - 1; 0 <= x ; x--){

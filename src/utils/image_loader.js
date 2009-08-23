@@ -1,4 +1,4 @@
-CD3.ImageLoader = function(){
+CD3.Util.loadImage = function(){
 	var loader;
 	
 	function clearLoader(){
