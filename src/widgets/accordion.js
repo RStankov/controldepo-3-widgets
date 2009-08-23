@@ -1,10 +1,9 @@
-CD3.Accordion = Class.create({
+CD3.Widget.Accordion = Class.create({
 	initialize: function(element, options){
 		element = $(element);
 		this.options = options = Object.extend({
 			triggers:	'.trigger',
 			content:	'.content',
-			event:		'click',
 			selected:	'selected',
 			duration:	1,
 			open:		'blindDown',
@@ -20,7 +19,7 @@ CD3.Accordion = Class.create({
 			
 			trigger.store('cd3:accordion:key', key);
 		}.bind(this));
-		element.delegate(options.triggers, options.event, this.activate.bind(this));
+		element.delegate(options.triggers, 'click', this.activate.bind(this));
 	},
 	activate: function(e){
 		e.stop();

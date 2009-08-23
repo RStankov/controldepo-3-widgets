@@ -3,14 +3,10 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>Accordion : functional test</title>
-		<script type="text/javascript" src="../../vendor/prototype.js"></script>
-		<script type="text/javascript" src="../../vendor/effects.js"></script>
-		<script type="text/javascript" src="../../src/controldepo.js"></script>
-		<script type="text/javascript" src="../../src/extensions/event.js"></script>
-		<script type="text/javascript" src="../../src/accordion.js"></script>
+		<title>CD3.Widget.Accordion : functional test</title>
+		<script type="text/javascript" src="../../dist/cd3widgets.js"></script>
 		<style type="text/css" media="screen">
-			#menu {
+			.menu {
 				list-style-type:none;
 				margin:0pt;
 				padding:20pt;
@@ -19,7 +15,7 @@
 				font-size: 12px;
 			}
 	
-			#menu .section_link {
+			.menu .section_link {
 				color: #A3AFBC;
 				text-decoration: none;
 				display: block;
@@ -27,18 +23,18 @@
 				border-bottom: 1px solid #A3AFBC;
 			}
 			
-			#menu .selected {
+			.menu .selected {
 				font-weight: bold;
 			}
 			
-			#menu ul {
+			.menu ul {
 				display:block;
 				list-style-type: none;
 				padding-left: 10px;
 				margin: 0px;
 			}
 			
-			#menu ul a {
+			.menu ul a {
 				color: #FFFFFF;
 				display: block;
 				font-size: 11px;
@@ -61,7 +57,7 @@
 		</style>
 	</head>
 	<body>
-		<ul id="menu">
+		<ul class="menu" id="click_menu">
 			<li>
 				<a class="section_link" href="#">Section 1</a>
 				<div style="display: none;">
@@ -100,7 +96,7 @@
 			</li>
 		</ul>
 		<script type="text/javascript">
-			new CD3.Accordion('menu', {
+			new CD3.Widget.Accordion('click_menu', {
 				triggers:	'a.section_link',
 				content:	'div',
 				duration:	0.6
