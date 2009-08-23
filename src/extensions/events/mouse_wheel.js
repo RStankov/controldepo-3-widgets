@@ -10,9 +10,10 @@
 			realDelta = -event.detail / 3;
 
 		if (!realDelta) return;
-
-		var customEvent = event.element().fire("mouse:wheel", { delta: realDelta });
-		if (customEvent.stopped) event.stop();
+		
+		
+		var customEvent = Event.element(event).fire("mouse:wheel", { delta: realDelta });
+		if (customEvent.stopped) Event.stop(event);
 	}
 
 	document.observe("mousewheel",     wheel);

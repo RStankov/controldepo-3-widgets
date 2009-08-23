@@ -11,10 +11,7 @@ var CD3 = {};
 //= require "widgets"
 //= require "form"
 
-//= require "drop_down"
 //= require "image_loader"
 //= require "radio"
-//= require "scroller"
-//= require "select"
 //= require "set_rule"
 //= require "slider"

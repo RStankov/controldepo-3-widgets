@@ -1,4 +1,4 @@
-CD3.DropDown = Class.create({
+CD3.Widget.DropDown = Class.create({
 	initialize: function (container) {
 		this.container	= $(container);
 		this.link		= this.container.down('a.drop')

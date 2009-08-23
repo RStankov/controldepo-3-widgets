@@ -1,4 +1,4 @@
-CD3.Select = Class.create(CD3.DropDown, {
+CD3.Form.Select = Class.create(CD3.Widget.DropDown, {
 	initialize: function(select){		
 		select = $(select);
 		
@@ -94,4 +94,4 @@ CD3.Select = Class.create(CD3.DropDown, {
 	}
 });
 
-CD3.Select.instances = {};
+CD3.Form.Select.instances = {};

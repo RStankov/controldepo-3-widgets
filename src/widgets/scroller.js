@@ -1,4 +1,4 @@
-CD3.Scroller = Class.create({
+CD3.Widget.Scroller = Class.create({
 	initialize: function(container, scroller, options){
 		// options
 		options = Object.extend({
@@ -96,7 +96,7 @@ CD3.Scroller = Class.create({
 		this.scroller[this.container.scrollHeight > this.container.offsetHeight ? 'hide' : 'show']();
 	}
 });
-CD3.Scroller.createIfNeeded = function(container, scroller, options){
+CD3.Widget.Scroller.createIfNeeded = function(container, scroller, options){
 	container  = $(container);
 
 	if (container.scrollHeight <= container.offsetHeight){
@@ -104,5 +104,5 @@ CD3.Scroller.createIfNeeded = function(container, scroller, options){
 		return null;
 	}
 	
-	return new CD3.Scroller(container, scroller, options);
+	return new this(container, scroller, options);
 }

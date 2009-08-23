@@ -3,17 +3,12 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>CD3.Select</title>
+		<title>CD3.Form.Select</title>
 		<link rel="stylesheet" href="../test.css" type="text/css" />
-		<script type="text/javascript" src="../../vendor/prototype.js"></script>
-		<script type="text/javascript" src="../../vendor/effects.js"></script>
-		<script type="text/javascript" src="../../vendor/unittest.js"></script>
-		<script type="text/javascript" src="../../src/controldepo.js"></script>
-		<script type="text/javascript" src="../../src/drop_down.js"></script>
-		<script type="text/javascript" src="../../src/select.js"></script>
+		<script type="text/javascript" src="../../dist/cd3widgets.js"></script>
 	</head>
 	<body>
-		<h1>CD3.Select</h1>
+		<h1>CD3.Form.Select</h1>
 		<div id="testlog"></div>
 		<div id="scripts"></div>
 		<div id="playground"></div>
@@ -32,7 +27,7 @@
 				return {
 					setup: function(){
 						$('playground').innerHTML = '<select id="test"><option value="1">1</opition></select>';
-						select = new CD3.Select('test');
+						select = new CD3.Form.Select('test');
 					},
 					teardown: function(){
 						if (select){

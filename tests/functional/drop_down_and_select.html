@@ -3,12 +3,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>Select : functional test</title>
-		<script type="text/javascript" src="../../vendor/prototype.js"></script>
-		<script type="text/javascript" src="../../vendor/effects.js"></script>
-		<script type="text/javascript" src="../../src/controldepo.js"></script>
-		<script type="text/javascript" src="../../src/drop_down.js"></script>
-		<script type="text/javascript" src="../../src/select.js"></script>
+		<title>CD3.Widget.DropDown and CD3.Form.Select : functional test</title>
+		<script type="text/javascript" src="../../dist/cd3widgets.js"></script>
 		<style type="text/css" media="screen">
 		.dropper {
 			font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
@@ -21,7 +17,6 @@
 			color: #836242;
 		}
 		
-
 		.drop {
 			position: relative;
 			display: block;
@@ -98,7 +93,7 @@
 		 ( <a href="#" id="add_option_button">add option</a> )
 				
 		<script type="text/javascript">
-			new CD3.DropDown('dropdown');
+			new CD3.Widget.DropDown('dropdown');
 			
 			$('dropdown').down('ul').observe('click', function(e){
 				var link = e.findElement('a');
@@ -107,7 +102,7 @@
 			
 			var customSelect;
 			$$('select').each(function(select){
-				customSelect = new CD3.Select(select, { onChange: function(value) { $('value').innerHTML = 'Selected value: ' + value; }});
+				customSelect = new CD3.Form.Select(select, { onChange: function(value) { $('value').innerHTML = 'Selected value: ' + value; }});
 			});
 			
 			var num = 0;
