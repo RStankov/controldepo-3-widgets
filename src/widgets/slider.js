@@ -1,4 +1,4 @@
-CD3.Slider = Class.create({
+CD3.Widget.Slider = Class.create({
 	initialize: function(container, options){
 		var options = Object.extend({
 			prev: 			null,

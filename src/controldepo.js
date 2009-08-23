@@ -13,4 +13,3 @@ var CD3 = {};
 
 //= require "image_loader"
 //= require "set_rule"
-//= require "slider"
