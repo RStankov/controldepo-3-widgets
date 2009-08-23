@@ -1,4 +1,16 @@
-23.09.2009 | rename CD3.FontSwitcher to CD3.Widget.FontSwitcher [rstankov]
+23.09.2009 | reorganize source files [rstankov]
+23.09.2009 | moved all widgets to 3 packages Widget / Form / Util [rstankov]
+           | * CD3.Accordion           > CD3.Widget.Accordion
+           | * CD3.DropDown            > CD3.Widget.DropDown 
+           | * CD3.FontSwitcher        > CD3.Widget.FontSwitcher
+           | * CD3.Scroller            > CD3.Widget.Scroller
+           | * CD3.Slider              > CD3.Widget.Slider
+           | * CD3.AdjustableTextarea  > CD3.Form.AdjustableTextarea
+           | * CD3.Checkbox            > CD3.Form.Checkbox
+           | * CD3.Radio               > CD3.Form.Radio
+           | * CD3.Select              > CD3.Form.Select
+           | * CD3.ImageLoader         > CD3.Util.loadImage
+           | * CD3.setRule             > CD3.Util.setRule
 23.09.2009 | added Element.unsetStorage extensions [rstankov]
 23.09.2009 | added Element.insert extensions - accepting array argument, and into / instead insertion translations  [rstankov] 
 23.09.2009 | added Andrew Dupont mouse:wheel custom event [rstankov]
