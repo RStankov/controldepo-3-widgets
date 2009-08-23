@@ -11,7 +11,6 @@ var CD3 = {};
 //= require "widgets"
 //= require "form"
 
-//= require "ajustable_textarea"
 //= require "drop_down"
 //= require "image_loader"
 //= require "radio"

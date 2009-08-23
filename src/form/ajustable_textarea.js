@@ -1,4 +1,4 @@
-CD3.AdjustableTextarea = Class.create({
+CD3.Form.AdjustableTextarea = Class.create({
 	initialize: function(textarea){
 		this.textarea	= textarea = $(textarea);
 		this.collapsed	= textarea.getHeight();
@@ -6,8 +6,8 @@ CD3.AdjustableTextarea = Class.create({
 		
 		var callback = this.ajust.bind(this);
 		
-		textarea.observe('keypress', callback);
-		textarea.observe('input', callback);
+		textarea.observe('keypress',	callback);
+		textarea.observe('input',		callback);
 		textarea.observe('beforepaste', callback);
 		
 		textarea.style.height = this.getHeightStyle();
