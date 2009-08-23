@@ -45,7 +45,7 @@ CD3.Scroller = Class.create({
 		this.sliderMaxHeight	= trackpath.getHeight() - this.handle.getHeight();
 					
 		// wheel
-		this.container.observe('mouse:wheel', this.traceMouseWheel.bind(this)
+		this.container.observe('mouse:wheel', this.traceMouseWheel.bind(this));
 		
 		// check if needed	
 		this.checkIfneeded();
