@@ -1,5 +1,3 @@
-//= require "extensions/event.js"
-
 CD3.Accordion = Class.create({
 	initialize: function(element, options){
 		element = $(element);

@@ -3,6 +3,8 @@
  * (c) Radoslav Stankov < Rstankov@gmail.com >
  */
 
+//= require "extensions"
+
 var CD3 = {};
 
 //= require "accordion"

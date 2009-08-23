@@ -1,6 +1,3 @@
-//= require "extensions/events/mouse_wheel"
-//= require <vendor/dragdrop>
-
 CD3.Scroller = Class.create({
 	initialize: function(container, scroller, options){
 		// options

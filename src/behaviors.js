@@ -1,5 +1,3 @@
-//= require "extensions/event.js"
-
 /*
  * based on:
  *    Justin Palmer's EventSelectors (http://encytemedia.com/event-selectors)

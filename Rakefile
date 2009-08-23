@@ -11,7 +11,7 @@ task :dist do
     return
   end
 
-  sources = ['vendor/prototype.js', 'vendor/effects.js', 'src/controldepo.js']
+  sources = ['vendor/prototype.js', 'vendor/effects.js', 'vendor/dragdrop.js', 'src/controldepo.js']
   
   secretary = Sprockets::Secretary.new( :source_files => sources )
   secretary.concatenation.save_to( ENV['save_to'].nil? ? 'dist/cd3widgets.js': ENV['save_to'] )

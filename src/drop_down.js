@@ -1,5 +1,3 @@
-//= require "controldepo"
-
 CD3.DropDown = Class.create({
 	initialize: function (container) {
 		this.container	= $(container);
