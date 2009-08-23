@@ -1,5 +1,3 @@
-//= require "controldepo"
-
 CD3.ImageLoader = function(){
 	var loader;
 	

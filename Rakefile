@@ -1,7 +1,7 @@
 require 'erb'
 require 'rake'
 
-desc 'Create a package for ControlDepo 3 Widgets ( accepts componets and save_to arguments )'
+desc 'Create a package for ControlDepo 3 Widgets ( accepts save_to argument )'
 task :dist do
   begin
     require "sprockets"
@@ -10,21 +10,11 @@ task :dist do
     puts "  $ gem install --remote sprockets\n\n"
     return
   end
-  
-  sources = if ENV['components'].nil?
-    FileList['src/**/*.js']
-  else
-    ENV['components'].split(',').inject [] do |memo, component|
-      memo << "src/#{component}.js"
-    end
-  end
-  
-  if ENV['no_prototype'].nil?
-    sources = sources.unshift('vendor/prototype.js', 'vendor/effects.js')
-  end
+
+  sources = ['vendor/prototype.js', 'vendor/effects.js', 'src/controldepo.js']
   
   secretary = Sprockets::Secretary.new( :source_files => sources )
-  secretary.concatenation.save_to( ENV['save_to'].nil? ? 'dist/cd3w.js': ENV['save_to'] )
+  secretary.concatenation.save_to( ENV['save_to'].nil? ? 'dist/cd3widgets.js': ENV['save_to'] )
 end
 
 TESTS = 'tests/unit/';

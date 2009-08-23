@@ -1,5 +1,3 @@
-//= require "../behaviors"
-
 // Usage: 
 //  CD3.Behaviors({
 //   '.menu a': CD3.Behaviors.Hover('hoverClass')

@@ -1,4 +1,3 @@
-//= require "controldepo"
 //= require "extensions/events/mouse_wheel"
 //= require <vendor/dragdrop>
 

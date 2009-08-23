@@ -1,10 +1,11 @@
-23.09.2009 | added Element.unsetStorage extensions
-23.09.2009 | added Element.insert extensions - accepting array argument, and into / instead insertion translations 
-23.09.2009 | added Andrew Dupont mouse:wheel custom event
-23.09.2009 | added focus:in / focus:out custom events
-28.08.2009 | added callback option to CD3.FontSwitcher
-13.07.2009 | added $('link').request metod
-09.07.2009 | added CD3.Behaviors.Stop
+23.09.2009 | rename CD3.FontSwitcher to CD3.Widget.FontSwitcher [rstankov]
+23.09.2009 | added Element.unsetStorage extensions [rstankov]
+23.09.2009 | added Element.insert extensions - accepting array argument, and into / instead insertion translations  [rstankov] 
+23.09.2009 | added Andrew Dupont mouse:wheel custom event [rstankov]
+23.09.2009 | added focus:in / focus:out custom events [rstankov]
+28.08.2009 | added callback option to CD3.FontSwitcher [rstankov]
+13.07.2009 | added $('link').request metod [rstankov]
+09.07.2009 | added CD3.Behaviors.Stop [rstankov]
 20.05.2009 | removed CD3.Behaviors.when, CD3.Behaviors.assign, CD3.Behaviors.assignIf, and bind their functionality into CD3.Behaviors [rstankov]
 02.05.2009 | added CD3.Behaviors.ScrollTo [rstankov]
 27.04.2009 | removed CD3.loadImage [rstankov]

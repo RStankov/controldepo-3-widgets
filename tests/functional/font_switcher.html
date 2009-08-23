@@ -3,11 +3,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>FontSwither : functional test</title>
-		<script type="text/javascript" src="../../vendor/prototype.js"></script>
-		<script type="text/javascript" src="../../src/controldepo.js"></script>
-		<script type="text/javascript" src="../../src/extensions/event.js"></script>
-		<script type="text/javascript" src="../../src/font_switcher.js"></script>
+		<title>CD3.Widget.FontSwither : functional test</title>
+		<script type="text/javascript" src="../../dist/cd3widgets.js"></script>
 		<style type="text/css" media="screen">	
 			.container {
 				font-size: 11px;
@@ -45,7 +42,7 @@
 		</fieldset>
 		
 		<fieldset>
-			<legend>With custom options</legend>
+			<legend>With custom options ( size: <span id="size">0</span> )</legend>
 			<div id='buttons_2'>
 				<input type="button" class="reset" value="reset" />
 				<input type="button" class="big" value="+" />
@@ -59,13 +56,16 @@
 		</fieldset>
 		
 		<script type="text/javascript">
-			new CD3.FontSwitcher('buttons_1', 'container_1');
-			new CD3.FontSwitcher('buttons_2', 'container_2', {
+			new CD3.Widget.FontSwitcher('buttons_1', 'container_1');
+			new CD3.Widget.FontSwitcher('buttons_2', 'container_2', {
 				className:	'the-text-size-',
 				max: 		5,
 				reset:		'.reset',
 				plus:		'.big',
-				minus:		'.small'
+				minus:		'.small',
+				callback:	function(){
+					$('size').innerHTML = this.size;
+				}
 			});
 		</script>
 	</body>

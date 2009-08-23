@@ -1,5 +1,3 @@
-//= require "controldepo"
-
 CD3.Radio = Class.create({
 	initialize: function(radio){
 		this.radio	= $(radio).hide();

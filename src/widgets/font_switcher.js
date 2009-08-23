@@ -1,7 +1,4 @@
-//= require "controldepo"
-//= require "extensions/event.js"
-
-CD3.FontSwitcher = Class.create({
+CD3.Widget.FontSwitcher = Class.create({
 	initialize: function(panel, content, options){
 		panel	= $(panel);
 		options = Object.extend({

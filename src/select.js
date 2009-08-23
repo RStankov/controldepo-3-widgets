@@ -1,6 +1,3 @@
-//= require "controldepo"
-//= require "drop_down"
-
 CD3.Select = Class.create(CD3.DropDown, {
 	initialize: function(select){		
 		select = $(select);
