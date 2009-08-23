@@ -12,6 +12,5 @@ var CD3 = {};
 //= require "form"
 
 //= require "image_loader"
-//= require "radio"
 //= require "set_rule"
 //= require "slider"

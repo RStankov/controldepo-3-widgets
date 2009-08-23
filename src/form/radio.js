@@ -1,4 +1,4 @@
-CD3.Radio = Class.create({
+CD3.Form.Radio = Class.create({
 	initialize: function(radio){
 		this.radio	= $(radio).hide();
 		this.name	= this.radio.getAttribute('name') || this.radio.identify();
@@ -9,17 +9,17 @@ CD3.Radio = Class.create({
 		this.button.observe('click', this.toggle.bind(this));
 		this.refresh();
 		
-		// becouse IE6 have buggy onchange event for radio buttons
-		if (!this.constructor._elements[this.name])
-			this.constructor._elements[this.name] = [];
-		this.constructor._elements[this.name].push(this);
+		// IE6 have buggy onchange event for radio buttons
+		if (!this.constructor.elements[this.name])
+			this.constructor.elements[this.name] = [];
+		this.constructor.elements[this.name].push(this);
 	},
 	toggle: function(){
 		this.radio.checked = !this.radio.checked;
-		this.constructor._elements[this.name].invoke('refresh');
+		this.constructor.elements[this.name].invoke('refresh');
 	},
 	refresh: function(){
 		this.button[this.radio.checked ? 'addClassName' : 'removeClassName']('selected');
 	}
 });
-CD3.Radio._elements = {};
+CD3.Form.Radio.elements = {};
