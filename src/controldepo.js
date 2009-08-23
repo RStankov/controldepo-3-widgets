@@ -7,9 +7,11 @@
 
 var CD3 = {};
 
-//= require "ajustable_textarea"
 //= require "behaviors"
-//= require "checkbox"
+//= require "widgets"
+//= require "form"
+
+//= require "ajustable_textarea"
 //= require "drop_down"
 //= require "image_loader"
 //= require "radio"
@@ -17,4 +19,3 @@ var CD3 = {};
 //= require "select"
 //= require "set_rule"
 //= require "slider"
-//= require "widgets"

@@ -3,33 +3,48 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>Checkbox : functional test</title>
-		<script type="text/javascript" src="../../vendor/prototype.js"></script>
-		<script type="text/javascript" src="../../src/controldepo.js"></script>
-		<script type="text/javascript" src="../../src/checkbox.js"></script>
+		<title>CD3.Form.Checkbox : functional test</title>
+		<script type="text/javascript" src="../../dist/cd3widgets.js"></script>
 		<style type="text/css" media="screen">
 			.checkbox {
 				display: block;
 				float: left;
 				width: 12px;
 				height: 12px;
-				margin: 4px;
-				border: 1px solid black;
+				margin-right: 4px;
+				border: 2px solid black;
 			}
 			.selected {
-				border: 1px solid red;
+				background: red;
+			}
+			#state {
+				font-weight: bold;
 			}
 		</style>
 	</head>
 	<body>
 		<input type="checkbox" id="checker" value="the value" /> Is this working conrectly (red is checked) ?
-		<input type="button" value="check if check box is checked" id="btn" />
+		<p>
+			Current state: <span id="state"></span>
+		</p>
+		<p>
+			<input type="button" value="check if check box is checked" id="btn" />
+		</p>
+		
 		<script type="text/javascript">
-			new CD3.Checkbox('checker');
+			new CD3.Form.Checkbox('checker');
 			
 			$('btn').observe('click', function(){
 				alert($('checker').checked ? 'Yes' : 'No');
 			});
+			
+			function checkstate(){
+				$('state').innerHTML = $('checker').checked ? "checked" : "unchecked";
+			}
+			
+			checkstate();
+			
+			document.observe('checkbox:clicked', checkstate);
 		</script>
 	</body>
 </html>
