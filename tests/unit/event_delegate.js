@@ -59,7 +59,40 @@ new Test.Unit.Runner({
     this.assertEqual(3, ul);
     this.assertEqual(3, li);
     this.assertEqual(1, a1);
-    this.assertEqual(1, a2);    
+    this.assertEqual(1, a2);
+    
+    // test stopDelegating single selector / event
+    // fire from first a, increase all except a2, li
+    element.stopDelegating('li', 'test:click');
+    element.down('.first').fire('test:click');
+        
+    this.assertEqual(5, el);
+    this.assertEqual(4, ul);
+    this.assertEqual(3, li);
+    this.assertEqual(2, a1);
+    this.assertEqual(1, a2);
+    
+    // test stopDelegating selector
+    // fire from first a, increase all except a1, a2, li
+    element.stopDelegating('.second');
+    element.down('.second').fire('test:click');
+
+    this.assertEqual(6, el);
+    this.assertEqual(5, ul);
+    this.assertEqual(3, li);
+    this.assertEqual(2, a1);
+    this.assertEqual(1, a2);
+    
+    // test stopDelegating all events
+    // fire from first a, increase only el
+    element.stopDelegating();
+    element.down('.second').fire('test:click');
+
+    this.assertEqual(7, el);
+    this.assertEqual(5, ul);
+    this.assertEqual(3, li);
+    this.assertEqual(2, a1);
+    this.assertEqual(1, a2);
   },
 	'test storing delegates info in element storage - {eventName: {selectorName: [handlers...]}}': function(){
 	  var element = $('test_delegate_save_in_store');
