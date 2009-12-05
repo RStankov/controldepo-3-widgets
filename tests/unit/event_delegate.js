@@ -4,6 +4,63 @@ var PROTOTYPE_EVENT_REGISTRY = 'prototype_event_registry',
 new Test.Unit.Runner({
 	setup: function(){},
 	teardown: function(){},
+  'test delegating': function(){
+    // Note: we use custom events to test due to simulating actual DOM events is problematic
+    var element = $('test_delegation');
+    
+    var el = 0, ul = 0, li = 0, a1 = 0, a2 = 0;
+    
+    element.observe(             'test:click', function(){ el++; });
+    element.delegate('ul',       'test:click', function(){ ul++; });
+    element.delegate('li',       'test:click', function(){ li++; });
+    element.delegate('.first',   'test:click', function(){ a1++; });
+    element.delegate('.second',  'test:click', function(){ a2++; });
+    
+    // fire from document, don't increase any thing
+    document.fire('test:click');
+    
+    this.assertEqual(0, el);
+    this.assertEqual(0, ul);
+    this.assertEqual(0, li);
+    this.assertEqual(0, a1);
+    this.assertEqual(0, a2);
+    
+    // fire from element, increase only el
+    element.fire('test:click');
+    
+    this.assertEqual(1, el);
+    this.assertEqual(0, ul);
+    this.assertEqual(0, li);
+    this.assertEqual(0, a1);
+    this.assertEqual(0, a2);
+    
+    // fire from first a, increase all except a2
+    element.down('.first').fire('test:click');
+    
+    this.assertEqual(2, el);
+    this.assertEqual(1, ul);
+    this.assertEqual(1, li);
+    this.assertEqual(1, a1);
+    this.assertEqual(0, a2);
+    
+    // fire from second a, increase all except a1
+    element.down('.second').fire('test:click');
+    
+    this.assertEqual(3, el);
+    this.assertEqual(2, ul);
+    this.assertEqual(2, li);
+    this.assertEqual(1, a1);
+    this.assertEqual(1, a2);
+    
+    // fire from li element, increase all except a1, a2
+    element.down('li').fire('test:click');
+    
+    this.assertEqual(4, el);
+    this.assertEqual(3, ul);
+    this.assertEqual(3, li);
+    this.assertEqual(1, a1);
+    this.assertEqual(1, a2);    
+  },
 	'test storing delegates info in element storage - {eventName: {selectorName: [handlers...]}}': function(){
 	  var element = $('test_delegate_save_in_store');
 	  
