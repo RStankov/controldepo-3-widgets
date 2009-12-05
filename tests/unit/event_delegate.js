@@ -94,6 +94,9 @@ new Test.Unit.Runner({
     this.assertEqual(2, a1);
     this.assertEqual(1, a2);
   },
+  'test setting delegate handler scope': function(){
+    // TODO
+  },
 	'test storing delegates info in element storage - {eventName: {selectorName: [handlers...]}}': function(){
 	  var element = $('test_delegate_save_in_store');
 	  
