@@ -1,5 +1,5 @@
 // credits to Andrew Dupont ( http://andrewdupont.net/2007/11/07/pseudo-custom-events-in-prototype-16/ )
-(function() {
+(function(){
 	function wheel(event){
 		var realDelta;
 
