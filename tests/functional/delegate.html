@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>CD3.Form.Radio : functional test</title>
+		<script type="text/javascript" src="../../dist/cd3widgets.js"></script>
+		<style type="text/css">
+		.activated {
+			border: 2px solid red;
+		}
+		.reset {
+			border: 2px solid blue;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="focus_blur">
+			<fieldset>
+				<legend>focus/blur test</legend>
+				<input type="text" />
+			</fieldset>
+  		</div>
+		<div class="change">
+			<fieldset>
+				<legend>change test</legend>
+				<input type="text" />
+				<select>
+					<option>value 1</option>
+					<option>value 2</option>
+					<option>value 3</option>
+					<option>value 4</option>
+					<option>value 5</option>
+					<option>value 6</option>
+				</select>
+			</fieldset>
+		</div>
+		<div class="submit_reset">
+			<fieldset>
+				<legend>submit/reset test</legend>
+				<form>
+					<input type="text" /><br />
+					<input type="submit" value="submit" /> | <input type="reset" value="reset" />
+				</form>
+			</fieldset>
+		</div>
+		<script>
+			document.delegate('.focus_blur', 'focus', function(){
+				this.addClassName('activated');
+			});
+			document.delegate('.focus_blur', 'blur', function(){
+				this.removeClassName('activated');
+			});
+			document.delegate('.change', 'change', function(){
+				var element = this.addClassName('activated');
+				setTimeout(function(){
+					element.removeClassName('activated');
+				}, 1000);
+			});
+			document.delegate('.submit_reset', 'submit', function(e){
+				e.stop();
+				var element = this.addClassName('activated');
+				setTimeout(function(){
+					element.removeClassName('activated');
+				}, 1000);
+			});
+			document.delegate('.submit_reset', 'reset', function(e){
+				var element = this.addClassName('reset');
+				setTimeout(function(){
+					element.removeClassName('reset');
+				}, 1000);
+			});
+		</script>
+	</body>
+</html>

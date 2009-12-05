@@ -1,4 +1,4 @@
-(function() {
+(function(){
 	function focusInHandler(e){
 		e.element().fire("focus:in");
 	}

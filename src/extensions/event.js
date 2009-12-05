@@ -1,4 +1,33 @@
 (function(){
+  var SPECIAL_EVENTS = (function(){
+    var element = document.createElement("div"),
+        events  = {};
+
+    // credits to Juriy Zaytsev ( http://thinkweb2.com/projects/prototype/detecting-event-support-without-browser-sniffing/ )
+    function isEventSupported(eventName){
+      eventName = "on" + eventName;
+      if (eventName in element){
+        return true;
+      }
+
+      element.setAttribute(eventName, "return;");
+      return Object.isFunction(element[eventName]);
+    }
+
+    if (isEventSupported('change')) events['change'] = 'value:changed';
+    if (isEventSupported('submit')) events['submit'] = 'form:submit';
+    if (isEventSupported('reset'))  events['reset']  = 'form:reset';
+    if (isEventSupported('focus'))  events['focus']  = 'focus:in';
+    if (isEventSupported('blur'))   events['blur']   = 'focus:out';
+    
+    element = null;
+    return events;
+  })();
+
+  function getEventName(eventName){
+    return SPECIAL_EVENTS[eventName] || eventName;
+  }
+  
   function delegateHandler(e){
     var element = e.element(), elements = element.ancestors ? element.ancestors().concat([element]) : [element];
     ((Element.retrieve(this, 'prototype_delegates') || new Hash()).get(e.eventName || e.type) || []).each(function(pair){
@@ -8,7 +37,8 @@
   }
 
   function delegate(element, selector, eventName, handler){
-    element = $(element);
+    element   = $(element);
+    eventName = getEventName(eventName);
         
     var store = Element.retrieve(element, 'prototype_delegates');
     
@@ -42,7 +72,8 @@
     
   // stopDelegating(element[, selector[, eventName[, handler]]])
   function stopDelegating(element, selector, eventName, handler){
-    element = $(element);
+    element   = $(element);
+    eventName = getEventName(eventName);
 
     var store = Element.retrieve(element, 'prototype_delegates');
     if (Object.isUndefined(store)) return;
@@ -77,4 +108,17 @@
   Event.delegate = delegate;
   Event.stopDelegating = stopDelegating;
   Element.addMethods({ delegate: delegate, stopDelegating: stopDelegating });
+  
+  // start custom events
+  if (SPECIAL_EVENTS['focus'] || SPECIAL_EVENTS['blur']){
+    //= require "events/focus"
+  }
+  
+  if (SPECIAL_EVENTS['change']){
+    //= require "events/change"
+  }
+  
+  if (SPECIAL_EVENTS['submit'] || SPECIAL_EVENTS['reset']){
+    //= require "events/form"
+  }
 })();
