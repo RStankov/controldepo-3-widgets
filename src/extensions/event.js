@@ -1,13 +1,13 @@
 (function(){
   function delegateHandler(e){
     var element = e.element(), elements = element.ancestors ? element.ancestors().concat([element]) : [element];
-    ((Element.retrieve(this, 'prototype_delegates') || $H()).get(e.eventName || e.type) || []).each(function(pair){
+    ((Element.retrieve(this, 'prototype_delegates') || new Hash()).get(e.eventName || e.type) || []).each(function(pair){
       if (element = Selector.matchElements(elements, pair.key)[0])
         pair.value.invoke('call', element, e); 
     });
   }
 
-  function delegate(element, selector, event, handler){
+  function delegate(element, selector, eventName, handler){
     element = $(element);
         
     var store = Element.retrieve(element, 'prototype_delegates');
@@ -16,11 +16,11 @@
       Element.store(element, 'prototype_delegates', store = $H());
     }
     
-    var eventStore = store.get(event);
+    var eventStore = store.get(eventName);
     
     if (Object.isUndefined(eventStore)){
-      Event.observe(element, event, delegateHandler);
-      store.set(event, $H()).set(selector, [handler]);
+      Event.observe(element, eventName, delegateHandler);
+      store.set(eventName, new Hash()).set(selector, [handler]);
     } else {
       (eventStore.get(selector) || eventStore.set(selector, [])).push(handler);
     }
@@ -28,20 +28,20 @@
     return element;
   }
   
-  function clearEvent(element, store, event){
-    store.unset(event);
-    Event.stopObserving(element, event, delegateHandler);
+  function clearEvent(element, store, eventName){
+    store.unset(eventName);
+    Event.stopObserving(element, eventName, delegateHandler);
   };
   
-  function clearSelector(element, store, selector, event, estore){
-    estore.unset(selector);
-    if (estore.values().length == 0){
-      clearEvent(element, store, event);
+  function clearSelector(element, store, selector, eventName, eventStore){
+    eventStore.unset(selector);
+    if (eventStore.values().length == 0){
+      clearEvent(element, store, eventName);
     }
   }
     
-  // stopDelegating(element[, selector[, event[, handler]]])
-  function stopDelegating(element, selector, event, handler){
+  // stopDelegating(element[, selector[, eventName[, handler]]])
+  function stopDelegating(element, selector, eventName, handler){
     element = $(element);
 
     var store = Element.retrieve(element, 'prototype_delegates');
@@ -51,21 +51,21 @@
       case 1: store.each(function(pair){ clearEvent(element, store, pair.key); }); break;
       case 2: store.each(function(pair){ clearSelector(element, store, selector, pair.key, pair.value); }); break;
       case 3: 
-          var estore = store.get(event);
-          if (estore) clearSelector(element, store, selector, event, estore);
+          var eventStore = store.get(eventName);
+          if (eventStore) clearSelector(element, store, selector, eventName, eventStore);
         break;
       default:
       case 4:
-        var estore = store.get(event);
-        if (!estore) return;
+        var eventStore = store.get(eventName);
+        if (!eventStore) return;
 
-         var sstore = estore.get(selector);
-         if (sstore){
-            sstore = sstore.reject(function(c){ return c == handler; });
-            if (sstore.length > 0){
-              estore.set(selector, sstore);
+         var selectorStore = eventStore.get(selector);
+         if (selectorStore){
+            selectorStore = selectorStore.reject(function(c){ return c == handler; });
+            if (selectorStore.length > 0){
+              eventStore.set(selector, selectorStore);
             } else {
-              clearSelector(element, store, selector, event, estore);
+              clearSelector(element, store, selector, eventName, eventStore);
             }          
         }
     }
