@@ -1,3 +1,4 @@
+//= require "extensions/number"
 //= require "extensions/element"
 //= require "extensions/element/insert"
 //= require "extensions/event"
