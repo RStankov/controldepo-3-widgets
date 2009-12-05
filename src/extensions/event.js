@@ -30,7 +30,7 @@
   
   function clearEvent(element, store, event){
     store.unset(event);
-    Event.observe(element, event, delegateHandler);
+    Event.stopObserving(element, event, delegateHandler);
   };
   
   function clearSelector(element, store, selector, event, estore){
