@@ -159,5 +159,12 @@ new Test.Unit.Runner({
     storage.get('click').get('a').each(function(handler){
       this.assert(handler != Prototype.emptyFunction);
     }.bind(this));
+  },
+  'test exposing delegete methods to document / Event / Element': function(){
+    this.assert(document.delegate == Event.delegate.methodize());
+    this.assert(Element.delegate == Event.delegate);
+    
+    this.assert(document.stopDelegating == Event.stopDelegating.methodize());
+    this.assert(Element.stopDelegating == Event.stopDelegating);
   }
 });
