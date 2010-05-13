@@ -40,7 +40,7 @@ CD3.Behaviors = (function(){
 			Event.observe(element, event, observer);
 		} else {
 			for(var selector in observer){
-				Event.delegate(element, selector, event, observer[selector]);
+			  Event.on(element, event, selector, observer[selector]);
 			}
 		}
 	}
