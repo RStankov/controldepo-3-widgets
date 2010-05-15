@@ -1,3 +1,4 @@
+15.12.2010 | added Number.between [rstnkov]
 05.12.2009 | added Number.prototype.round and Number.prototype.formatted [rstankov]
 23.08.2009 | reorganize source files [rstankov]
 23.08.2009 | moved all widgets to 3 packages Widget / Form / Util [rstankov]

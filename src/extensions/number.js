@@ -8,6 +8,13 @@ Number.prototype.round = function(precision){
 	return Math.round(this * precision) / precision;
 };
 
+Number.prototype.between = function(n1, n2){
+  var min = (n1 < n2) ? n1 : n2,
+      max = (n1 < n2) ? n2 : n1;
+      
+  return this >= min && this <= max;
+}
+
 Number.prototype.formatted = function(){
 	if (!this) return 0;
 	
