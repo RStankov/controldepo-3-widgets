@@ -37,12 +37,12 @@
 					},
 					testAddOption: function(){
 						var before = getOptionsCount();
-						select.addOption({value: 2, text: 2});
+						select.add({value: 2, text: 2});
 						this.assertEqual(before + 1, getOptionsCount());
 					},
 					testRemoveOptions: function(){
 						if (getOptionsCount() == 0) {
-							select.addOption({value: 2, text: 2});
+							select.add({value: 2, text: 2});
 						}
 						
 						this.assert(getOptionsCount() > 0);
@@ -57,7 +57,7 @@
 						var options = [];
 						$(1, before + 4).each(function(v){ options.push({value: v, text: v}) });
 						
-						select.setOptions(options);
+						select.set(options);
 						
 						this.assert(before != getOptionsCount());
 						
@@ -68,7 +68,7 @@
 						
 						before = current.length;
 						
-						select.setOptions(options, true);
+						select.set(options, true);
 						
 						this.assertEqual(options.length + before, getOptionsCount());
 					}

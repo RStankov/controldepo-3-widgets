@@ -92,22 +92,23 @@
 		
 		 ( <a href="#" id="add_option_button">add option</a> )
 				
-		<script type="text/javascript">
-			new CD3.Widget.DropDown('dropdown');
-			
-			$('dropdown').down('ul').observe('click', function(e){
-				var link = e.findElement('a');
-				if (link) alert('Goto: ' + link.innerHTML);
-			});
-			/*
-			var customSelect;
-			$$('select').each(function(select){
-				customSelect = new CD3.Form.Select(select, { onChange: function(value) { $('value').innerHTML = 'Selected value: ' + value; }});
-			});
-			
-			var num = 0;
-			$('add_option_button').observe('click', function(e){ customSelect.addOption({text: 'Added option #' + (++num), value: num}); });
-			*/
-		</script>
+    <script type="text/javascript">
+      new CD3.Widget.DropDown('dropdown');
+
+      $('dropdown').down('ul').on('click', 'a', function(e){
+    	  alert('Goto: ' + link.innerHTML);
+      });
+
+      var customSelect = new CD3.Form.Select($$('select').first(), {
+        onChange: function(value) {
+          $('value').innerHTML = 'Selected value: ' + value;
+        }
+      });
+      
+      var num = 0;
+      $('add_option_button').observe('click', function(e){
+        customSelect.add({text: 'Added option #' + (++num), value: num});
+      });
+    </script>
 	</body>
 </html>
