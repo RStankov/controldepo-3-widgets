@@ -1,25 +1,31 @@
 CD3.Form.Radio = Class.create({
 	initialize: function(radio){
-		this.radio	= $(radio).hide();
-		this.name	= this.radio.getAttribute('name') || this.radio.identify();
-		this.button	= new Element('a', {className:'radio', href:'javascript:;'}).update(' ');
+		this.element  = $(radio).hide();
+		this.name     = this.element.getAttribute('name') || this.element.identify();
+		this.button   = new Element('a', {className:'radio', href:'#'}).update(' ');
 		
-		this.radio.insert({before: this.button});
-		
-		this.button.observe('click', this.toggle.bind(this));
-		this.refresh();
+		this.element.insert({before: this.button});
 		
 		// IE6 have buggy onchange event for radio buttons
-		if (!this.constructor.elements[this.name])
+		if (!this.constructor.elements[this.name]){
 			this.constructor.elements[this.name] = [];
+		}
 		this.constructor.elements[this.name].push(this);
+		
+		this.element.observe('click', this.refresh.bind(this));
+		this.button.observe('click', this.toggle.bind(this));
+		this.refresh();
 	},
-	toggle: function(){
-		this.radio.checked = !this.radio.checked;
-		this.constructor.elements[this.name].invoke('refresh');
+	toggle: function(e){
+    if (e && Object.isFunction(e.stop)) e.stop();
+    
+		this.element.checked = !this.element.checked;
+		this.refresh();
 	},
 	refresh: function(){
-		this.button[this.radio.checked ? 'addClassName' : 'removeClassName']('selected');
+		this.constructor.elements[this.name].each(function(object){
+		  object.button[object.element.checked ? 'addClassName' : 'removeClassName']('selected');
+		});
 	}
 });
 CD3.Form.Radio.elements = {};
