@@ -45,7 +45,7 @@ CD3.Form.Select = Class.create(CD3.Widget.DropDown, {
     }
 
     Element.remove(select);
-    delete options;
+    delete this.options;
   },
   addObservers: function($super){
     $super();
