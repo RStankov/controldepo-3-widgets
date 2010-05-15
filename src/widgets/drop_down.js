@@ -17,7 +17,7 @@ CD3.Widget.DropDown = CD3.Widget.create('CD3.Widget.DropDown', {
 	toggle: function(e){
 	  if (e && Object.isFunction(e.stop)){
 	    e.stop();
-	    
+    }
 		this[this.menu.visible() ? 'hide' : 'show']();
 	},
 	show: function(){
