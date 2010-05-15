@@ -1,4 +1,6 @@
 CD3.Widget.Scroller = Class.create(CD3.Widget.Base, {
+  NAME: "CD3.Widget.Scroller",
+      
   setup: function(){
     this.speed		= this.options.speed;
     this.scroller	= $(this.options.scroller);
