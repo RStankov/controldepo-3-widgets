@@ -54,8 +54,3 @@ CD3.Behaviors = (function(){
 	};
 })();
 
-//= require "behaviors/hover"
-//= require "behaviors/scroll_to"
-//= require "behaviors/stop"
-//= require "behaviors/title_as_default"
-

@@ -1,6 +1,6 @@
 // Usage: 
 //  CD3.Behaviors({
-//   'input[type=text]': CD3.Behaviors.TitleAsDefaultValue
+//   'input[type=text]': CD3.Behavior.TitleAsDefaultValue
 //  });
 CD3.Behaviors.TitleAsDefaultValue = {
 	focus: function(){ if (this.getValue() == this.getAttribute('title')) this.setValue(''); },

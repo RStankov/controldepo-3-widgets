@@ -3,11 +3,11 @@
  * (c) Radoslav Stankov < Rstankov@gmail.com >
  */
 
-//= require "extensions"
-
 var CD3 = {};
 
-//= require "behaviors"
-//= require "utils"
-//= require "widgets"
-//= require "form"
+//= require "cd3/extensions"
+//= require "cd3/behaviors"
+//= require "cd3/behavior"
+//= require "cd3/utils"
+//= require "cd3/widgets"
+//= require "cd3/form"
