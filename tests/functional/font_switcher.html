@@ -56,8 +56,9 @@
 		</fieldset>
 		
 		<script type="text/javascript">
-			new CD3.Widget.FontSwitcher('buttons_1', 'container_1');
-			new CD3.Widget.FontSwitcher('buttons_2', 'container_2', {
+			new CD3.Widget.FontSwitcher('buttons_1', { content: 'container_1' });
+			new CD3.Widget.FontSwitcher('buttons_2', {
+			  content:  'container_2',
 				className:	'the-text-size-',
 				max: 		5,
 				reset:		'.reset',
