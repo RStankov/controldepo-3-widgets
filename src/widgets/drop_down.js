@@ -1,32 +1,31 @@
-CD3.Widget.DropDown = Class.create({
-	initialize: function (container) {
-		this.container	= $(container);
-		this.link		= this.container.down('a.drop')
-		this.div		= this.container.down('div').hide();
-		this.ul			= this.container.down('ul');
-		this.bindEvents();
+CD3.Widget.DropDown = CD3.Widget.create('CD3.Widget.DropDown', {
+  trigger: '.drop',
+  menu: 'div'
+}, {
+	setup: function (){
+	  this.trigger = this.element.down(this.options.trigger);
+	  this.menu    = this.element.down(this.options.menu).hide();
 	},
-	bindEvents: function(){
-		this.link.observe('click', this.toggle.bind(this));
-		this.clickObserver = this.close.bind(this);
-	},
-	unbindEvents: function(){
-		this.link.observe('click');
-		document.stopObserving('click', this.clickObserver);
-		this.clickObserver = Prototype.emptyFunction();
+	addObservers: function(){
+	  this.documentObserver = new Event.Handler(document, 'click', null, this.close.bind(this));
+	  this.documentObserver.start = this.documentObserver.start.bind(this.documentObserver)
+	  this.observers = [
+	    this.open.on('click', this.toggle.bind(this)),
+	    this.documentObserver
+	  ];
 	},
 	toggle: function(){
-		this[this.div.visible() ? 'hide' : 'show']();
+		this[this.menu.visible() ? 'hide' : 'show']();
 	},
-	show: function(){		
-		Effect.BlindDown(this.div, {duration: 0.2});
-		document.observe('click', this.clickObserver);
+	show: function(){
+		this.menu.show();
+		this.documentObserver.start.defer();
 	},
 	hide: function(){
-		Effect.BlindUp(this.div, {duration: 0.1});
-		document.stopObserving('click', this.clickObserver);
+		this.menu.hide();
+		this.documentObserver.stop();
 	},
 	close: function(){
-		if (this.div.visible()) this.hide();
+		if (this.menu.visible()) this.hide();
 	}
 });
