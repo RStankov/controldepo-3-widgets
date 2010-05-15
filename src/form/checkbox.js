@@ -16,7 +16,9 @@ CD3.Form.Checkbox = Class.create({
       this.button.addClassName('selected');
     }
   },
-  toggle: function(){
+  toggle: function(e){
+    if (e && Object.isFunction(e.stop)) e.stop();
+    
     this.element.checked = !this.element.checked;
     this.clicked();
   },
