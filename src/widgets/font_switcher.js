@@ -1,6 +1,12 @@
-CD3.Widget.FontSwitcher = Class.create(CD3.Widget.Base, {
-  NAME: "CD3.Widget.FontSwitcher",
-  
+CD3.Widget.FontSwitcher = CD3.Widget.create("CD3.Widget.FontSwitcher", {
+  className:	'text-size-',
+  max: 		    4,
+  reset:		  '.reset',
+  plus:		    '.plus',
+  minus:		  '.minus',
+  callback:   false,
+  content:    null
+}, {
   setup: function(){
     this.content    = $(this.options.content);
     this.size       = this.element.getAttribute('data-size') || 0;
@@ -40,13 +46,3 @@ CD3.Widget.FontSwitcher = Class.create(CD3.Widget.Base, {
     if (Object.isFunction(options.callback)) options.callback.call(this, this);
   }
 });
-
-CD3.Widget.FontSwitcher.DEFAULT_OPTIONS = {
-  className:	'text-size-',
-  max: 		    4,
-  reset:		  '.reset',
-  plus:		    '.plus',
-  minus:		  '.minus',
-  callback:   false,
-  content:    null
-};

@@ -1,5 +1,12 @@
-CD3.Widget.Scroller = Class.create(CD3.Widget.Base, {
-  NAME: "CD3.Widget.Scroller",
+CD3.Widget.Scroller = CD3.Widget.create("CD3.Widget.Scroller", {
+  scroller:       null,
+  styleArrow:     'arrow',
+	styleMoveUp:    'moveup',
+	styleMoveDown:  'movedown',
+	styleSlider:    'slider',
+	drag:           true,
+	speed:          1
+} , {
       
   setup: function(){
     this.speed		= this.options.speed;
@@ -83,16 +90,6 @@ CD3.Widget.Scroller = Class.create(CD3.Widget.Base, {
     this.scroller[this.element.scrollHeight > this.element.getHeight() ? 'show' : 'hide']();
   }
 });
-
-CD3.Widget.Scroller.DEFAULT_OPTIONS = {
-  scroller:       null,
-  styleArrow:     'arrow',
-	styleMoveUp:    'moveup',
-	styleMoveDown:  'movedown',
-	styleSlider:    'slider',
-	drag:           true,
-	speed:          1
-};
 
 CD3.Widget.Scroller.createIfNeeded = function(container, scroller, options){
   container  = $(container);

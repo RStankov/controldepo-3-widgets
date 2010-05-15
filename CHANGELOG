@@ -1,3 +1,4 @@
+15.12.2010 | added CD3.Widget.create [rstankov]
 15.12.2010 | added CD3.Widget.Base [rstankov]
 15.12.2010 | added Number.between [rstankov]
 05.12.2009 | added Number.prototype.round and Number.prototype.formatted [rstankov]
