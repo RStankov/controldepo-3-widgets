@@ -4,3 +4,4 @@
 //= require "extensions/event"
 //= require "extensions/events/focus"
 //= require "extensions/events/mouse_wheel"
+//= require "extensions/effects"

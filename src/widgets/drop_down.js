@@ -22,13 +22,13 @@ CD3.Widget.DropDown = CD3.Widget.create('CD3.Widget.DropDown', {
 	},
 	show: function(){
 	  if (!this.menu.visible()){
-		  this.menu.show();
+		  this.menu.slideDown();
 		  this.documentObserver.start.defer();
 	  }
 	},
 	hide: function(){
 	  if (this.menu.visible()){
-		  this.menu.hide();
+		  this.menu.slideUp();
 		  this.documentObserver.stop();
 	  }
 	}
