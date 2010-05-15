@@ -150,9 +150,9 @@ document.observe('dom:loaded', function(){
 	   		var assert = this.assert.bind(this);
    	
 			// mock Event.delegate
-			var eventDelegate = Event.delegate;
+			var eventDelegate = Event.on;
 			
-			Event.delegate = function(element, selector, eventName, handler){
+			Event.on = function(element, eventName, selector, handler){
 				assert(Object.isElement(element));
 	   			assert(element.match(handler.root));
 				assert(handler.selector == selector);
@@ -193,7 +193,7 @@ document.observe('dom:loaded', function(){
 			})
 			
 			// unmock Event.delegate
-			Event.delegate = eventDelegate;
+			Event.on = eventDelegate;
 			
 			var expectedAsserts = $$('#test-event-delegation').length;
 				
