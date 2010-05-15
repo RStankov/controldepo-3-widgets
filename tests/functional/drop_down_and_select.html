@@ -96,7 +96,7 @@
       new CD3.Widget.DropDown('dropdown');
 
       $('dropdown').down('ul').on('click', 'a', function(e){
-    	  alert('Goto: ' + link.innerHTML);
+    	  alert('Goto: ' + this.innerHTML);
       });
 
       var customSelect = new CD3.Form.Select($$('select').first(), {

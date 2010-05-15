@@ -71,6 +71,7 @@ CD3.Form.Select = Class.create(CD3.Widget.DropDown, {
     if (dontClear !== true) this.select(options[0]);
   },
   selectOption: function(e, element){
+    e.stop();
     this.select(element.retrieve('option'));
   },
   select: function(option){
