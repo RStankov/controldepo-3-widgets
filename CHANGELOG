@@ -1,5 +1,5 @@
-15.12.2010 | added CD3.Widget.create [rstankov]
-15.12.2010 | added CD3.Widget.Base [rstankov]
+15.12.2010 | added CD3.Widget.create, factory method for creating widget classes [rstankov]
+15.12.2010 | added CD3.Widget.Base, base class all widgets [rstankov]
 15.12.2010 | added Number.between [rstankov]
 05.12.2009 | added Number.prototype.round and Number.prototype.formatted [rstankov]
 23.08.2009 | reorganize source files [rstankov]
