@@ -1,91 +1,77 @@
-Effect.Mutate = function(from, into){
-	from = $(from);
-	from.makeClipping();
-	from.absolutize();
-	from.insert({after: $(into) || into});
-	
-	into = from.next();
-	into.makeClipping();
-	into.setOpacity(0.0);
-	into.show();
-	
-	var style	= '',
-		options	= Object.extend({ replace: false, resize: true }, arguments[2] || {})
-	
-	if (options.resize){
-		var	fromDim = from.getDimensions(),
-			intoDim = into.getDimensions();
-	
-		if (fromDim.width  != intoDim.width)  style += 'width: '  + intoDim.width  + 'px; ';
-		if (fromDim.height != intoDim.height) style += 'height: ' + intoDim.height + 'px; ';
-		
-		into.setStyle({width: fromDim.width + 'px', height: fromDim.height + 'px' });
+S2.FX.Fade = Class.create(S2.FX.Element, {
+	setup: function() {
+		this.animate('style', this.element, {style: 'opacity:0'});
+	},
+	teardown: function() {
+		this.element.hide();
 	}
+});
 
-	return new Effect.Parallel([
-		new Effect.Morph(from, {sync: true, style: style + 'opacity: 0.0;'}),
-		new Effect.Morph(into, {sync: true, style: style + 'opacity: 1.0;'})
-	], Object.extend(options, {
-		afterFinishInternal: function(e){
-			into.undoClipping();
-			into = null;
-			
-			if (e.options.replace){
-				from.remove();
-				from = null;
-			} else {
-				from.relativize();
-				from.undoClipping();
-				from.hide();
-			}
-		}
-	}));
-};
+S2.FX.Appear = Class.create(S2.FX.Element, {
+	setup: function() {
+		this.animate('style', this.element.setOpacity(0).show(), {style: 'opacity:1'});
+	}
+});
 
-Effect.FadeBlind = function(element){
-	return new Effect.Parallel([Effect.BlindUp(element, {sync: true}), Effect.Fade(element, {sync: true})], arguments[1] || {});
-};
-Effect.AppearBlind = function(element){
-	return new Effect.Parallel([Effect.BlindDown(element, {sync: true}), Effect.Appear(element, {sync: true})], arguments[1] || {});
-};
+S2.FX.Highlight = Class.create(S2.FX.Element, {
+  initialize: function($super, element, options){
+    $super(element, Object.extend({
+      startColor: 			  '#ffff99',
+      endColor:				      false,
+      restoreColor:			    true,
+      keepBackgroundImage:	false
+    }, options));
+  },
+  setup: function(){
+    if (this.element.getStyle('display') == 'none'){
+      return this.cancel();
+    }
 
-// enable Effect.toggle(element, 'fading_blind');
-Effect.PAIRS['fading_blind'] = ['AppearBlind', 'FadeBlind'];
+    if (!this.options.endColor){
+      this.options.endColor = this.element.getStyle('background-color');
+    }
+    
+    if (this.options.restoreColor){
+      this.options.restoreColor	= this.element.style.backgroundColor;
+    }
+    
+    if (this.options.keepBackgroundImage){
+      this.restoreBackgroundImage = this.element.getStyle('background-image');
+      this.element.style.backgroundImage = 'none';
+    }
+
+    this.element.style.backgroundColor = this.options.startColor;
+    this.animate("style", this.element, { style: "background-color: " + this.options.endColor});
+  },
+  teardown: function(){
+    this.element.style.backgroundColor = this.options.restoreColor;
+    if (this.options.keepBackgroundImage){
+      this.element.style.backgroundImage = this.restoreBackgroundImage;
+    }
+  }
+});
+
+Element.addMethods(['slideDown', 'slideUp', 'highlight'].inject({}, function(methods, effect){
+  var name = effect.charAt(0).toUpperCase() + effect.substring(1);
+  methods[effect] = function(element, options){
+    element = $(element);
+    new S2.FX[name](element, options).play();
+    return element;
+  };
+  return methods;
+}));
 
 Element.addMethods({
-	fadeBlind: function(element, options){
-		element = $(element);
-		Effect.FadeBlind(element, options);
-		return element;
-	},
-	appearBlind: function(element, options){
-		element = $(element);
-		Effect.AppearBlind(element, options);
-		return element;
-	},
-	mutateTo: function(element, into, options){
-		element = $(element)
-		Effect.Mutate(element, into, options)
-		return element;
-	},
-	removeWithEffect: function(element, effect, options){
-		element = $(element);
-		options = options || {};
-		
-		options.afterFinish = 'afterFinish' in options ? 
-			options.afterFinish.wrap(function(callback, e){ callback(e); element.remove(); }) : 
-			function(){ element.remove(); };
-		
-		effect = effect.camelize();
-		effect = effect.charAt(0).toUpperCase() + effect.substring(1);
-		effect = Effect[effect];
-		
-		if (effect.prototype.initialize){
-			new effect(element, options);
-		} else {
-			effect(element, options);
+	toggleWithEffect: (function(){
+		var PAIRS = {
+			'fade':  ['Fade', 'Appear'],
+			'slide': ['SlideUp', 'SlideDown']
+		};
+		return function(element, effect, options){
+			element = $(element);
+			
+			new S2.FX[(PAIRS[effect] || PAIRS['fade'])[element.visible() ? 0 : 1]](element, options).play();
+			return element;
 		}
-		
-		return element;
-	}
+	})()
 });
