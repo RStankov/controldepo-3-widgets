@@ -1,6 +1,6 @@
 new Test.Unit.Runner((function(){
 	var select;
-	
+
 	function getOptions(){
 		return $A(select.ul.getElementsByTagName('a'));
 	}
@@ -25,14 +25,14 @@ new Test.Unit.Runner((function(){
 			select.add({value: 2, text: 2});
 			this.assertEqual(before + 1, getOptionsCount());
 		},
-		testRemoveOptions: function(){
+		testRemoveAllOptions: function(){
 			if (getOptionsCount() == 0) {
 				select.add({value: 2, text: 2});
 			}
 			
 			this.assert(getOptionsCount() > 0);
 			
-			select.removeOptions();
+			select.removeAll();
 									
 			this.assert(getOptionsCount() === 0);
 		},

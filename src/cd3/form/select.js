@@ -52,7 +52,8 @@ CD3.Form.Select = Class.create(CD3.Widget.DropDown, {
     this.observers.push(this.menu.on('click', 'a', this.selectOption.bind(this)));
   },
   destroy: function(){
-    this.container.purge().remove();
+    this.container.purge();
+    this.container.remove();
     this.removeObservers();
   },
   add: function(option){
@@ -64,11 +65,14 @@ CD3.Form.Select = Class.create(CD3.Widget.DropDown, {
     ));
   },
   set: function(options, dontClear){
-    if (dontClear !== true) this.ul.select('li').each(function(li){ li.purge().remove(); });
+    if (dontClear !== true) this.removeAll();
 
     $A(options).each(this.add.bind(this));
 
     if (dontClear !== true) this.select(options[0]);
+  },
+  removeAll: function(){
+    this.ul.select('li').each(function(li){ li.purge(); li.remove(); });
   },
   selectOption: function(e, element){
     e.stop();
