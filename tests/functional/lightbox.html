@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>CD3.Lightbox</title>
+	<style>
+	  body {
+	    margin: 0;
+	    padding: 0;
+	  }
+	
+	  #overlay {
+	    background: #666;
+	    position: fixed;
+	  }
+	  #lightbox {
+	    background-color: #fff;
+	    -moz-border-radius: 10px;
+	    -webkit-border-radius: 10px;
+	    border-radius: 10px;	   
+	    padding: 10px;
+	    position: absolute;
+	  }
+	  .image_container {
+	    position: relative;
+	  }
+	  .image_container ul {
+	    float: left;
+	    margin: 0;
+	    list-style-type: none;
+	    padding: 0;
+	    position: absolute;
+	    top: 0;
+	    width: 100%;
+	  }
+	  .image_container ul li {
+	    height: 100%;
+	    cursor: pointer;
+	    float: left;	    
+	    width: 50%;
+	  }
+	  .image_container ul li:hover {
+	    background-color: #ccc;
+	  }
+	  .navigation {
+	    color: #666;
+	    font-size: 12px;
+	    padding: 15px 0 5px;
+	  }
+	  .navigation h3, .navigation p {
+	    margin: 0 100px 0 0;
+	    padding: 0;
+	  }
+	  .navigation .close {
+	    cursor: pointer;
+	    float: right;
+	    text-align: right;
+	    width: 100px;
+	  }
+	  .loading .image_container {
+	    background: url(ajax-loader.gif) center no-repeat;
+	  }
+	  .loading ul {
+	    display: none;
+	  }
+	</style>
+</head>
+<body>
+  <!--
+  <div id="overlay" style="height: 1000px;"></div>
+  <div id="lightbox" style="top: 100px; left: 300px;">
+    <div class="image_container">
+      <img src="image.jpg" />
+      <ul style="height: 398px;">
+        <li class="previous"></li>
+        <li class="next"></li>
+      </ul>
+    </div>
+    <div class="navigation">
+      <span class="close">X</span>
+      <h3>Снимка някаква такавааааааааа ооооо ууу _|_</h3>
+      <p>снимка 1 от 69</p>
+    </div>
+  </div>
+  -->
+  [<a href="../assets/lightbox/image_1.jpg" rel='lightbox[group_1]' title="Image caption 1">image 1</a>]<br />
+  [<a href="../assets/lightbox/image_2.jpg" rel='lightbox[group_1]' title="Image caption 2">image 2</a>]<br />
+  [<a href="../assets/lightbox/image_3.jpg" rel='lightbox[group_1]' title="Image caption 3">image 3</a>]<br />
+  [<a href="../assets/lightbox/image_4.jpg" rel='lightbox[group_1]' title="Image caption 4">image 4</a>]<br />
+  <br /><br /><br />
+  <br /><br /><br />
+  <br /><br /><br /><select></select>
+  <br /><br /><br />
+  <br /><br /><br />
+  <br /><br /><br />
+  <br /><br /><br />
+  <br /><br /><br />
+  <br /><br /><br />
+  <script src="../../dist/cd3widgets.js"></script>
+  <script>
+    new CD3.Lightbox();
+  </script>
+</body>
+</html>

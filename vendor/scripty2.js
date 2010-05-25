@@ -304,10 +304,9 @@ S2.FX.Base = Class.create({
   setOptions: function(options) {
     options = S2.FX.parseOptions(options);
 
-    if (!this.options) {
-      this.options = Object.extend(Object.extend({},S2.FX.DefaultOptions), options);
-      if(options.tween) this.options.transition = options.tween;
-    }
+    this.options = Object.extend(this.options || Object.extend({}, S2.FX.DefaultOptions), options);
+
+    if (options.tween) this.options.transition = options.tween;
 
     if (this.options.beforeUpdate || this.options.afterUpdate) {
       this.update = this.updateWithoutWrappers.wrap( function(proceed,position){
@@ -324,6 +323,7 @@ S2.FX.Base = Class.create({
   play: function(options) {
     this.setOptions(options);
     this.frameCount = 0;
+    this.state = 'idle';
     this.options.queue.add(this);
     this.maxFrames = this.options.fps * this.duration / 1000;
     return this;
@@ -1439,6 +1439,7 @@ S2.FX.Zoom = Class.create(S2.FX.Element, {
     }.bind(this));
   }
 });
+
 
 
 
