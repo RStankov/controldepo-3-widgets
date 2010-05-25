@@ -1,3 +1,4 @@
+26.05.2010 | added CD3.Util.Overlay [rstankov]
 26.05.2010 | added CD3.Util.createImageLoader and CD3.Util.preloadImage [rstankov]
 26.05.2010 | added replaceEventWith method in CD3.Widget.Base [rstankov]
 15.05.2010 | ported several effects from script.aculo.us [rstankov]
