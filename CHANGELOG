@@ -1,3 +1,4 @@
+26.05.2010 | added replaceEventWith method in CD3.Widget.Base [rstankov]
 15.05.2010 | ported several effects from script.aculo.us [rstankov]
 15.05.2010 | added CD3.Widget.create, factory method for creating widget classes [rstankov]
 15.05.2010 | added CD3.Widget.Base, base class all widgets [rstankov]

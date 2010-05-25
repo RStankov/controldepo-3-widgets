@@ -10,5 +10,12 @@ CD3.Widget.Base = Class.create(S2.UI.Base, {
   removeObservers: function(){
     this.observers.invoke('stop');
     this.observers = [];
+  },
+  replaceEventWith: function(){
+    var object = this;
+    return function(e, element){
+      e.stop();
+      object[method](element);
+    };
   }
 });
