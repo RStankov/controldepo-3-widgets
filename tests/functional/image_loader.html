@@ -1,20 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>CD3.Util.loadImage : functional test</title>
-		<script type="text/javascript" src="../../dist/cd3widgets.js"></script>
-	</head>
-	<body id="container">	
-		<script type="text/javascript">
-			CD3.Util.loadImage('dont_exists_image', function(){
-				alert('This message should not run');
-			});
-			
-			CD3.Util.loadImage('../assets/image_loader.jpg', function(image){
-				$('container').insert({ top: image });
-			});
-		</script>
-	</body>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>CD3.Util.loadImage : functional test</title>
+    <script type="text/javascript" src="../../dist/cd3widgets.js"></script>
+  </head>
+  <body id="container">	
+    <script type="text/javascript">
+    var loader = CD3.Util.createImageLoader;
+    
+    loader(function(image){ alert('This message should not run'); })('dont_exists_image');
+    loader(function(image){ $('container').insert({ top: image }); })('../assets/image_loader.jpg');
+  </script>
+  </body>
 </html>
