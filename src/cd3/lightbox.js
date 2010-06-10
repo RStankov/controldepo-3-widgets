@@ -85,11 +85,11 @@ CD3.Lightbox = CD3.Widget.create('CD3.Lightbox', {
   function afterResize(){
     this.prevButton.setStyle({ 
       height:     this.image.height + 'px',
-      visibility: this.activeImage > 0 ? null : 'hidden'
+      visibility: this.activeImage > 0 ? 'visible' : 'hidden'
     });
     this.nextButton.setStyle({
       height:     this.image.height + 'px',
-      visibility: this.activeImage < this.images.length - 1 ? null : 'hidden'
+      visibility: this.activeImage < this.images.length - 1 ? 'visible' : 'hidden'
     });
     
     this.element.removeClassName('loading');
