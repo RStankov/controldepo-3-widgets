@@ -51,7 +51,7 @@ S2.FX.Highlight = Class.create(S2.FX.Element, {
   }
 });
 
-Element.addMethods(['slideDown', 'slideUp', 'highlight'].inject({}, function(methods, effect){
+Element.addMethods(['slideDown', 'slideUp', 'highlight', 'appear', 'fade'].inject({}, function(methods, effect){
   var name = effect.charAt(0).toUpperCase() + effect.substring(1);
   methods[effect] = function(element, options){
     element = $(element);
