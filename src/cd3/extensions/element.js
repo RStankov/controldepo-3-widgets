@@ -15,7 +15,12 @@ Element.addMethods({
 				delete(Element.Storage[uid]);
 		}
 		return element;
-	}
+	},
+	replaceClassName: function(element, oldClassName, newClassName){
+     element = $(element);
+     element.className = element.className.replace(oldClassName, newClassName);
+     return element;
+   }
 });
 
 Element.addMethods('A', {
