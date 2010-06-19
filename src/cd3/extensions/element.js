@@ -25,15 +25,17 @@ Element.addMethods({
 
 Element.addMethods('A', {
 	request: function(element, options){
-		element = $(element); if (!options) options = {};
+		element = $(element);
 		
 		if (element.hasAttribute('data-confirm') && !confirm(element.getAttribute('data-confirm'))){
 			return element;
 		}
 		
-		if (!options.method){
-			options.method = element.getAttribute('data-method') || 'get';
-		}
+		options = Object.extend({
+		  method:       element.getAttribute('data-method') || 'get',
+		  parameters:   {},
+  	  evalScripts:  true
+		}, options || {});
 		
 		if (element.hasAttribute('data-update')){
 			new Ajax.Updater(element.getAttribute('data-update'), element.href || window.location.href, options);

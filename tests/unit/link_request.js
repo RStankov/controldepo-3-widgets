@@ -22,7 +22,7 @@ document.observe('dom:loaded', function(){
 			this.mockAjaxRequest(function(url, options){
 				this.assertEqual($('normal_link').href, url);
 				this.assertEqual('get', options.method);
-				this.assertEqual(Object.keys(options).length, 1);
+				this.assertEqual(Object.keys(options).length, 3);
 			}, function(){
 				$('normal_link').request();
 			});
@@ -34,7 +34,7 @@ document.observe('dom:loaded', function(){
 				this.mockAjaxRequest(function(url, options){
 					this.assertEqual($('link_method_' + method).href, url);
 					this.assertEqual(method, options && options.method);
-					this.assertEqual(Object.keys(options).length, 1);
+					this.assertEqual(Object.keys(options).length, 3);
 				}, function(){
 					$('link_method_' + method).request();
 				});
@@ -49,7 +49,7 @@ document.observe('dom:loaded', function(){
 				this.mockAjaxRequest(function(url, options){
 					this.assertEqual($('link_method_' + method).href, url);
 					this.assertEqual(methods[i], options && options.method);
-					this.assertEqual(Object.keys(options).length, 1);
+					this.assertEqual(Object.keys(options).length, 3);
 				}, function(){
 					$('link_method_' + method).request({method: methods[i]});
 					this.assertNotEqual(methods[i], method);
