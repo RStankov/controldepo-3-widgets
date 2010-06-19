@@ -100,6 +100,30 @@ document.observe('dom:loaded', function(){
 			});
 			
 			this.assertCount(2);
+		},
+		testAjaxMethodCustomEvent: function(){
+		  var calls       = {count: 0},
+	        assertEqual = this.assertEqual.bind(this);
+	        
+		  ['get', 'post', 'put', 'delete'].each(function(method){
+		    this.mockAjaxRequest(function(url, options){
+					this.assertEqual($('link_method_' + method).readAttribute('href'), url);
+					this.assertEqual(method, options && options.method);
+					this.assertEqual(Object.keys(options).length, 3);
+				}, function(){
+				  var link = $('link_method_' + method);
+				  link.observe('ajax:' + method, function(e){
+	          assertEqual(e.findElement(), $('link_method_' + method));
+	          calls[method]   = true;
+	          calls['count'] += 1;
+	        });
+				  link.request();
+				});
+				
+				this.assert(calls[method] === true);
+		  }, this);
+		  
+		  this.assert(calls.count == 4);
 		}
 	});
 });

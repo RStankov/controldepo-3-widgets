@@ -37,6 +37,8 @@ Element.addMethods('A', {
   	  evalScripts:  true
 		}, options || {});
 		
+		element.fire('ajax:' + options.method);
+		
 		if (element.hasAttribute('data-update')){
 			new Ajax.Updater(element.getAttribute('data-update'), element.readAttribute('href'), options);
 		} else {
