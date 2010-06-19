@@ -20,7 +20,7 @@ document.observe('dom:loaded', function(){
 		teardown: function(){},
 		testNormalLink: function(){
 			this.mockAjaxRequest(function(url, options){
-				this.assertEqual($('normal_link').href, url);
+				this.assertEqual($('normal_link').readAttribute('href'), url);
 				this.assertEqual('get', options.method);
 				this.assertEqual(Object.keys(options).length, 3);
 			}, function(){
@@ -32,7 +32,7 @@ document.observe('dom:loaded', function(){
 		testMethodSettingViaDataMethod: function(){
 			['post', 'put', 'delete'].each(function(method){
 				this.mockAjaxRequest(function(url, options){
-					this.assertEqual($('link_method_' + method).href, url);
+					this.assertEqual($('link_method_' + method).readAttribute('href'), url);
 					this.assertEqual(method, options && options.method);
 					this.assertEqual(Object.keys(options).length, 3);
 				}, function(){
@@ -47,7 +47,7 @@ document.observe('dom:loaded', function(){
 			
 			['post', 'put', 'delete'].each(function(method, i){
 				this.mockAjaxRequest(function(url, options){
-					this.assertEqual($('link_method_' + method).href, url);
+					this.assertEqual($('link_method_' + method).readAttribute('href'), url);
 					this.assertEqual(methods[i], options && options.method);
 					this.assertEqual(Object.keys(options).length, 3);
 				}, function(){
@@ -79,7 +79,7 @@ document.observe('dom:loaded', function(){
 				return true;
 			}, function(){
 				this.mockAjaxRequest(function(url){
-					this.assertEqual($('link_confirm').href, url);
+					this.assertEqual($('link_confirm').readAttribute('href'), url);
 				}, function(){
 					$('link_confirm').request();
 				});
@@ -89,11 +89,11 @@ document.observe('dom:loaded', function(){
 		},
 		testUpdater: function(){
 			this.mock(Ajax, 'Updater', function(elementId, url){
-				this.assertEqual($('link_update').href, url);
+				this.assertEqual($('link_update').readAttribute('href'), url);
 				this.assertEqual($('link_update').getAttribute('data-update'), elementId);
 			}, function(){
 				this.mockAjaxRequest(function(url){
-					this.assertEqual($('link_confirm').href, url);
+					this.assertEqual($('link_confirm').readAttribute('href'), url);
 				}, function(){
 					$('link_update').request();
 				});

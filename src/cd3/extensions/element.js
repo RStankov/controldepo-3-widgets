@@ -38,9 +38,9 @@ Element.addMethods('A', {
 		}, options || {});
 		
 		if (element.hasAttribute('data-update')){
-			new Ajax.Updater(element.getAttribute('data-update'), element.href || window.location.href, options);
+			new Ajax.Updater(element.getAttribute('data-update'), element.readAttribute('href'), options);
 		} else {
-			new Ajax.Request(element.href || window.location.href, options);
+			new Ajax.Request(element.readAttribute('href'), options);
 		}
 		
 		return element;
