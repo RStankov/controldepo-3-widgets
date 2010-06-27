@@ -37,14 +37,10 @@ Element.addMethods('A', {
   	  evalScripts:  true
 		}, options || {});
 		
-		element.fire('ajax:' + options.method);
-		
 		if (element.hasAttribute('data-update')){
-			new Ajax.Updater(element.getAttribute('data-update'), element.readAttribute('href'), options);
-		} else {
-			new Ajax.Request(element.readAttribute('href'), options);
+			return new Ajax.Updater(element.getAttribute('data-update'), element.readAttribute('href'), options);
 		}
 		
-		return element;
+		return new Ajax.Request(element.readAttribute('href'), options);
 	}
 });
