@@ -9,7 +9,7 @@ CD3.Form.Select = Class.create(CD3.Widget.DropDown, {
     this.span       = new Element('span');
     this.menu		    = new Element('div').hide();
     this.ul			    = new Element('ul');
-    this.element    = new Element('input', {type: 'hidden', name: select.readAttribute('select'), value: select.getValue()});
+    this.element    = new Element('input', {type: 'hidden', name: select.readAttribute('name'), value: select.getValue()});
 
     if (select.className){
       this.container.addClassName(select.className);
