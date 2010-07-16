@@ -7,7 +7,7 @@ CD3.Widget.Accordion = Class.create({
 			selected:	'selected',
 			duration:	1,
 			open:		'blindDown',
-			close:		'blindUp',
+			close:		'blindUp'
 		}, options || {});
 		
 		this.trigger	= null;
