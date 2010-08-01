@@ -35,7 +35,7 @@ CD3.Form.Select = Class.create(CD3.Widget.DropDown, {
     }
 
     $A(select.options).each(this.add.bind(this));
-    select.option.length > 0 && this.select(select.options[select.selectedIndex])
+    select.options.length > 0 && this.select(select.options[select.selectedIndex])
     
     if (options.length > options.scrollLimit){
       this.div.addClassName(options.classNames.scrolled);
